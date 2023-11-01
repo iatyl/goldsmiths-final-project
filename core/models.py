@@ -12,14 +12,26 @@ UserModel = get_user_model()
 
 class IRCClient(models.Model):
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True)
+    name = models.CharField(max_length=500)
     server = models.CharField(max_length=255)
     is_ssl = models.BooleanField(default=True)
     port = models.IntegerField(default=6697)
     nick = models.CharField(max_length=100)
     real_name = models.CharField(max_length=100)
-    sasl_login = models.CharField(max_length=125)
-    sasl_passwd = models.CharField(max_length=125)
+    sasl_login = models.CharField(max_length=125, null=True, blank=True)
+    sasl_passwd = models.CharField(max_length=125, null=True, blank=True)
+    is_enabled = models.BooleanField(default=True)
     _join_list = models.JSONField(default=list)
+
+    def serialize(self):
+        return {
+            "name": self.name,
+            "server": self.server,
+            "port": str(self.port),
+            "nick": self.nick,
+            "real_name": self.real_name,
+            "join_list": self.join_list,
+        }
 
     @property
     def join_list(self):
@@ -35,7 +47,12 @@ class IRCClient(models.Model):
         if self.is_ssl:
             extra["connect_factory"] = ssl_factory()
         reactor = Reactor()
-        conn = reactor.server().connect(self.server, self.port, self.nick, **extra)
+        conn = reactor.server().connect(
+            self.server,
+            self.port,
+            self.nick,
+            **extra,
+        )
         for channel in self.join_list:
             conn.join(channel)
         all_connections[self.pk] = conn
