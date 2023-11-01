@@ -2,7 +2,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from core.models import IRCClient
-from corelibs.irc.store import all_connections
 
 
 class ConnectedClientsView(APIView):
@@ -12,7 +11,7 @@ class ConnectedClientsView(APIView):
             IRCClient.objects.filter(user=request.user).filter(is_enabled=True).all()
         )
         for client in enabled_clients:
-            connection = all_connections[client.pk].server_connection
+            connection = client.get_connection()
             if connection is not None:
                 connected_clients.append(client.serialize())
         return Response({"clients": connected_clients})
