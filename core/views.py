@@ -12,7 +12,7 @@ class ConnectedClientsView(APIView):
             IRCClient.objects.filter(user=request.user).filter(is_enabled=True).all()
         )
         for client in enabled_clients:
-            connection = all_connections[client.pk]
+            connection = all_connections[client.pk].server_connection
             if connection is not None:
                 connected_clients.append(client.serialize())
         return Response({"clients": connected_clients})

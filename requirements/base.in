@@ -3,3 +3,4 @@ django-stubs==4.2.6
 irc
 pydantic
 djangorestframework
+uvicorn
