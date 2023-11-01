@@ -3,3 +3,4 @@
 .vscode
 requirements.txt
 __pycache__
+db.sqlite3
