@@ -8,5 +8,10 @@ urlpatterns = [
         "connected-clients/",
         views.ConnectedClientsView.as_view(),
         name="connected_clients",
-    )
+    ),
+    path(
+        "channel-messages/",
+        views.ChannelMessageView.as_view(),
+        name="channel_messages",
+    ),
 ]
