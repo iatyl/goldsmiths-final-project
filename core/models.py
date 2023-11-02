@@ -39,7 +39,9 @@ class IRCClient(models.Model):
             "nick": self.nick,
             "real_name": self.real_name,
             "join_list": self.join_list,
-            "connected_at": self.connected_at.timestamp() if self.connected_at else None,
+            "connected_at": self.connected_at.timestamp()
+            if self.connected_at
+            else None,
         }
 
     @property

@@ -21,10 +21,10 @@ class ConnectedClientsView(APIView):
 
 
 class ChannelMessageView(APIView):
-    def get(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         client_pk = request.data.get("client_pk")
         channel = request.data.get("channel")
-        offset_timestamp = int(request.data.get("offset_timestamp"))
+        offset_timestamp = float(request.data.get("offset_timestamp"))
         client = (
             IRCClient.objects.filter(is_enabled=True)
             .filter(user=request.user)

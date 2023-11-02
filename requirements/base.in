@@ -4,3 +4,4 @@ irc
 pydantic
 djangorestframework
 uvicorn
+django-cors-headers
