@@ -1,7 +1,10 @@
-django==4.2.6
-django-stubs==4.2.6
+django
+django-stubs
 irc
 pydantic
 djangorestframework
 uvicorn
 django-cors-headers
+django-extensions
+environs[django]
+mysqlclient

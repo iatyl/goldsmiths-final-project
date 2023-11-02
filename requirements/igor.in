@@ -1,0 +1,3 @@
+-r dev.in
+django==4.1.13
+django-stubs==1.16.0
