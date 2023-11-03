@@ -2,3 +2,5 @@
 black
 isort
 ipython
+django==4.2.6
+django-stubs==4.2.6

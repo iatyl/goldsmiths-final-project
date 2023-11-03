@@ -84,10 +84,10 @@ WSGI_APPLICATION = "irchub.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+DATABASE_URL_ENVKEY = "DEV_DATABASE_URL" if DEBUG else "DATABASE_URL"
 DATABASES = {
     "default": env.dj_db_url(
-        "DATABASE_URL", default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+        DATABASE_URL_ENVKEY, default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
     )
 }
 

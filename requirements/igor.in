@@ -1,3 +1,6 @@
--r dev.in
+-r base.in
+black
+isort
+ipython
 django==4.1.13
 django-stubs==1.16.0
