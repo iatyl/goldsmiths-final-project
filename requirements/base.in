@@ -8,3 +8,4 @@ gevent
 django-cors-headers
 django-extensions
 environs[django]
+whitenoise

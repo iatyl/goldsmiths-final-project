@@ -15,6 +15,11 @@ api_urlpatterns = [
         views.ChannelMessageView.as_view(),
         name="channel_messages",
     ),
+    path(
+        "send-message/",
+        views.SendMessageView.as_view(),
+        name="send_message",
+    ),
 ]
 
 urlpatterns = [

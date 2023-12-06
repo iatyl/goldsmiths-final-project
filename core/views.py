@@ -23,6 +23,35 @@ class FrontendView(View):
         file = open(path, "rb")
         return FileResponse(file)
 
+class SendMessageView(APIView):
+    def post(self, request, *args, **kwargs):
+        client_pk = request.data.get("client_pk")
+        channel = request.data.get("channel")
+        message = request.data.get("message")
+        if not message:
+            return Response({"messages": [], "error": "empty message"})
+        client = (
+            IRCClient.objects.filter(user=request.user)
+            .filter(pk=client_pk)
+            .filter(is_enabled=True)
+            .first()
+        )
+        if client is None:
+            return Response({"messages": [], "error": "no such client"})
+        if channel not in client.join_list:
+            return Response({"messages": [], "error": "channel not joined"})
+
+        client.get_connection().privmsg(channel, message)
+        IRCEvent.objects.create(
+            client=client,
+            event_type="pubmsg",
+            event_source=f"{client.nick}!IRCHub",
+            event_target=channel,
+            event_arguments=[message],
+        )
+
+        return Response({"messages": [], "error": None})
+
 
 class ConnectedClientsView(APIView):
     def get(self, request, *args, **kwargs):

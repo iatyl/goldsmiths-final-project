@@ -9,24 +9,27 @@
 </select>
 <div id="messages"></div>
 <input id="user-message" type="text"><br>
-<button>Send!</button>
+<button id="send-message-btn">Send!</button>
 
 </body>
 <script>
     const apiBase = "http://127.0.0.1:8000/api"
-    const token = ""
+    const token = "c53f530e92581b0c479854fb3586fb92b900004b"
     const channelSwitch = document.getElementById("channel-switch")
     const messagesElement = document.getElementById("messages")
     const headers = {"Authorization": `Token ${token}`,
         'Accept': 'application/json',
         'Content-Type': 'application/json'}
     let latestTimestamp = null;
+    let myNick = null;
     fetch(`${apiBase}/connected-clients/`, {headers})
         .then(response => response.json())
         .then(data => {
+            myNick = data.clients[0].nick
             for (let channel of data.clients[0].join_list) {
                 channelSwitch.innerHTML += `<option value="${channel}-${data.clients[0].connected_at}-${data.clients[0].pk}">${channel}</option>`
             }
+            latestTimestamp = data.clients[0].connected_at
         })
     channelSwitch.addEventListener("click", e => {
         const channel = e.target.value.split("-")[0]
@@ -41,6 +44,9 @@
             .then(data => {
                 messagesElement.innerHTML = ""
                 const messages = data.messages
+                if (!messages.length) {
+                    return
+                }
                 latestTimestamp = messages[0].timestamp
                 messages.reverse()
                 for (let m of messages) {
@@ -60,6 +66,9 @@
                 .then(response => response.json())
                 .then(data => {
                     const messages = data.messages
+                    if (!messages.length) {
+                    return
+                    }
                     latestTimestamp = messages[0].timestamp
                     messages.reverse()
                     for (let m of messages) {
@@ -68,7 +77,33 @@
                 })
         }
     }
-    setInterval(fetchMessages, 4000);
+    function sendMessage(e) {
+        const message = document.getElementById("user-message").value.trim()
+        if (!message) {
+            return
+        }
+        const channel = channelSwitch.value.split("-")[0]
+        const pk = channelSwitch.value.split("-")[2]
+        fetch(`${apiBase}/send-message/`, {
+                method: "POST",
+                headers,
+                body: JSON.stringify({client_pk: pk, offset_timestamp: latestTimestamp, channel, message}),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error !== null) {
+                        alert("Failed!")
+                    } else {
+                    document.getElementById("user-message").value = ""
+                    }
+                })
+
+    }
+    document.getElementById("send-message-btn").addEventListener(
+        "click",
+        sendMessage
+    )
+    setInterval(fetchMessages, 2000);
 
 </script>
 </html>
