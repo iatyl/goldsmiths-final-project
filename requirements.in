@@ -1,6 +1,0 @@
-quart
-markupsafe
-isort
-black
-SQLAlchemy
-argon2-cffi

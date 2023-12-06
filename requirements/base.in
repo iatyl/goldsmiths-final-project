@@ -1,0 +1,9 @@
+django
+django-stubs
+irc
+pydantic
+djangorestframework
+uvicorn
+django-cors-headers
+django-extensions
+environs[django]
