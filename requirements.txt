@@ -17,9 +17,7 @@ autocommand==2.2.2
 black==23.11.0
     # via -r requirements/dev.in
 click==8.1.7
-    # via
-    #   black
-    #   uvicorn
+    # via black
 decorator==5.1.1
     # via ipython
 dj-database-url==2.1.0
@@ -56,8 +54,12 @@ exceptiongroup==1.2.0
     # via ipython
 executing==2.0.1
     # via stack-data
-h11==0.14.0
-    # via uvicorn
+gevent==23.9.1
+    # via -r requirements/base.in
+greenlet==3.0.1
+    # via gevent
+gunicorn==21.2.0
+    # via -r requirements/base.in
 inflect==7.0.0
     # via jaraco-text
 ipython==8.18.1
@@ -99,6 +101,7 @@ mypy-extensions==1.0.0
 packaging==23.2
     # via
     #   black
+    #   gunicorn
     #   marshmallow
 parso==0.8.3
     # via jedi
@@ -161,8 +164,12 @@ typing-extensions==4.8.0
     #   inflect
     #   pydantic
     #   pydantic-core
-    #   uvicorn
-uvicorn==0.24.0.post1
-    # via -r requirements/base.in
 wcwidth==0.2.12
     # via prompt-toolkit
+zope-event==5.0
+    # via gevent
+zope-interface==6.1
+    # via gevent
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools

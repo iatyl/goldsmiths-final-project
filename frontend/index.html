@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IRCHub</title>
+</head>
+<body>
+<select name="channels" id="channel-switch">
+</select>
+<div id="messages"></div>
+<input id="user-message" type="text"><br>
+<button>Send!</button>
+
+</body>
+<script>
+    const apiBase = "http://127.0.0.1:8000/api"
+    const token = ""
+    const channelSwitch = document.getElementById("channel-switch")
+    const messagesElement = document.getElementById("messages")
+    const headers = {"Authorization": `Token ${token}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'}
+    let latestTimestamp = null;
+    fetch(`${apiBase}/connected-clients/`, {headers})
+        .then(response => response.json())
+        .then(data => {
+            for (let channel of data.clients[0].join_list) {
+                channelSwitch.innerHTML += `<option value="${channel}-${data.clients[0].connected_at}-${data.clients[0].pk}">${channel}</option>`
+            }
+        })
+    channelSwitch.addEventListener("click", e => {
+        const channel = e.target.value.split("-")[0]
+        const ts = e.target.value.split("-")[1]
+        const pk = e.target.value.split("-")[2]
+        fetch(`${apiBase}/channel-messages/`, {
+            method: "POST",
+            headers,
+            body: JSON.stringify({client_pk: pk, offset_timestamp: ts, channel: channel}),
+        })
+            .then(response => response.json())
+            .then(data => {
+                messagesElement.innerHTML = ""
+                const messages = data.messages
+                latestTimestamp = messages[0].timestamp
+                messages.reverse()
+                for (let m of messages) {
+                    messagesElement.innerHTML += `<p>${m.nick}: ${m.message}</p>`
+                }
+            })
+    })
+    function fetchMessages() {
+        if (latestTimestamp !== null) {
+            const channel = channelSwitch.value.split("-")[0]
+            const pk = channelSwitch.value.split("-")[2]
+            fetch(`${apiBase}/channel-messages/`, {
+                method: "POST",
+                headers,
+                body: JSON.stringify({client_pk: pk, offset_timestamp: latestTimestamp, channel: channel}),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const messages = data.messages
+                    latestTimestamp = messages[0].timestamp
+                    messages.reverse()
+                    for (let m of messages) {
+                        messagesElement.innerHTML += `<p>${m.nick}: ${m.message}</p>`
+                    }
+                })
+        }
+    }
+    setInterval(fetchMessages, 4000);
+
+</script>
+</html>

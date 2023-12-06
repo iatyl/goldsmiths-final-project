@@ -3,7 +3,8 @@ django-stubs
 irc
 pydantic
 djangorestframework
-uvicorn
+gunicorn
+gevent
 django-cors-headers
 django-extensions
 environs[django]

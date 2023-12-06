@@ -1,10 +1,27 @@
 import datetime
+import os
 
+from django.conf import settings
+from django.http import FileResponse, Http404
 from django.utils import timezone
+from django.views import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from core.models import IRCClient, IRCEvent
+
+
+class FrontendView(View):
+    frontend_dir = settings.BASE_DIR / "frontend"
+
+    def get(self, request, path="./", *args, **kwargs):
+        path = path.lstrip("/")
+        if os.path.isdir(os.path.join(self.frontend_dir, path)):
+            path = os.path.join(self.frontend_dir, path, "index.html")
+        if os.path.exists(path) is False:
+            raise Http404("404 Not Found")
+        file = open(path, "rb")
+        return FileResponse(file)
 
 
 class ConnectedClientsView(APIView):
