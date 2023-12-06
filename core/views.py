@@ -23,6 +23,7 @@ class FrontendView(View):
         file = open(path, "rb")
         return FileResponse(file)
 
+
 class SendMessageView(APIView):
     def post(self, request, *args, **kwargs):
         client_pk = request.data.get("client_pk")
