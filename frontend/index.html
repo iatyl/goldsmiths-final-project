@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IRCHub</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<div id="login-screen" class="container">
+    <form id="login-form">
+        Username: <input type="text" name="username"> <br>
+        Password: <input type="password" name="password">
+    </form>
+<a href="#" id="login-link" class="primary-link">Signup / Login</a>
+&nbsp;&nbsp;
+</div>
+<div id="chat-screen" class="container">
+<h1>
+    <span id="greet-text"></span>
+    &nbsp;&nbsp;
+    <a href="#" id="logout-link" class="primary-link">Logout</a>
+    &nbsp;&nbsp;
+</h1></div>
+</body>
+<!--<script src="/assets/js/jquery.min.js"></script>-->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    function handleLogin(e) {
+        e.preventDefault()
+    }
+    function handleLogout(e) {
+        e.preventDefault()
+    }
+    $("#login-link").click(handleLogin)
+    $("#logout-link").click(handleLogout)
+    function onUnauthenticated() {
+        $("#chat-screen").hide()
+
+        $("#login-screen").show()
+    }
+    function onAuthenticated() {
+        $("#login-screen").hide()
+
+        $("#chat-screen").show()
+    }
+    function checkAuthenticated() {
+    }
+    onUnauthenticated()
+</script>
+</html>

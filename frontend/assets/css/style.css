@@ -1,0 +1,11 @@
+.primary-link {
+    color: #000000;
+    text-decoration: underline;
+}
+.container {
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+#login-form {
+    font-size: 1.3em;
+}
