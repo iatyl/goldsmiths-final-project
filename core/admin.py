@@ -53,11 +53,11 @@ class IRCEventAdmin(admin.ModelAdmin):
 
     @admin.display(description="Nick")
     def nick(self, obj):
-        return obj.event_source.split("!")[0]
+        return (obj.event_source or "").split("!")[0]
 
     @admin.display(description="Origin")
     def origin(self, obj):
-        return obj.event_source.split("!")[-1]
+        return (obj.event_source or "").split("!")[-1]
 
     @admin.display(description="Target")
     def target(self, obj):
