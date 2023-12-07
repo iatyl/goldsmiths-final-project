@@ -30,7 +30,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", True)
 
-ALLOWED_HOSTS = ["fyp.gscoursework.thealois.com"]
+ALLOWED_HOSTS = ["fyp.gscoursework.thealois.com", "127.0.0.1"]
 
 
 # Application definition

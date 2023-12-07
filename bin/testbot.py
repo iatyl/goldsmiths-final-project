@@ -52,7 +52,7 @@ def main():
         kwargs["connect_factory"] = ssl_factory
     reactor = irc.client.Reactor()
     try:
-        c = reactor.server().connect("172.17.0.1", port, "bot", **kwargs)
+        c = reactor.server().connect("127.0.0.1", port, "bot", **kwargs)
     except irc.client.ServerConnectionError:
         print(sys.exc_info()[1])
         raise SystemExit(1)
