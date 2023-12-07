@@ -1,6 +1,14 @@
-# Demo
-A working instance is deployed on [Hetzner](https://www.hetzner.com/): [https://fyp.gscoursework.thealois.com](https://fyp.gscoursework.thealois.com)
+# IRCHub
+IRCHub is a modern IRC client service for sane people.
 
+The prototype is up, where you can see channel members, chat with people or join channels (by editing the join list). It's not good for now, but it will be great later.
+
+A rewrite in [Phoenix](https://www.phoenixframework.org/) will probably happen around Christmas to address several performance issues.
+
+
+# Prototype Demo
+A working instance is deployed on [Hetzner](https://www.hetzner.com/): [https://fyp.gscoursework.thealois.com](https://fyp.gscoursework.thealois.com)
+## Credentials
 * username: `password`
 * password: `Goldsmiths`
 # how to run (on linux or macos)
@@ -41,5 +49,8 @@ gunicorn -k gevent -w 1 irchub.wsgi:application
 ```
 ### Access the web page.
 Just go to `http://127.0.0.1:8000`.
+
+
+> Sapere aude.
 
 And for user management, please go to `http://127.0.0.1:8000/not-admin/`. (http://127.0.0.1:8000/admin/ is a honeypot)
