@@ -16,8 +16,9 @@ class FrontendView(View):
 
     def get(self, request, path="./", *args, **kwargs):
         path = path.lstrip("/")
-        if os.path.isdir(os.path.join(self.frontend_dir, path)):
-            path = os.path.join(self.frontend_dir, path, "index.html")
+        path = os.path.join(self.frontend_dir, path)
+        if os.path.isdir(path):
+            path = os.path.join(path, "index.html")
         if os.path.exists(path) is False:
             raise Http404("404 Not Found")
         file = open(path, "rb")
