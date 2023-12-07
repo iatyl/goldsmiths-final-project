@@ -18,10 +18,15 @@ Install dependencies:
 ```shell
 /usr/bin/sh ./bin/devdeps.sh
 ```
+### Setup Environment Variables
+run `cp .env.sample .env`, and edit `.env`.
+
+If you would like to use sqlite3 instead of mysql, please delete `DEV_DATABASE_URL` and `DATABASE_URL`. The sqlite3 database will be setup at the project's root directory, called `db.sqlite3`
 ### Create a user
 ```
 python3 ./manage.py createsuperuser
 ```
+
 ### Ready. Set. Run!
 > Note that async IO and multiprocessing are not supported for now.
 > and multiprocessing is planned.
