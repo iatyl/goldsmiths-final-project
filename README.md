@@ -22,6 +22,10 @@ make a virtualenv:
 ```shell
 python3 -m venv .venv
 ```
+activate the virtualenv:
+```shell
+. .venv/bin/activate
+```
 ### Install Dependencies
 Install `pip-tools`:
 ```shell
