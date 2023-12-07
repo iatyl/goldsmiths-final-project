@@ -5,6 +5,7 @@
     <title>IRCHub</title>
 </head>
 <body>
+<div id="members"></div>
 <select name="channels" id="channel-switch">
 </select>
 <div id="messages"></div>
@@ -34,6 +35,7 @@
         const channel = e.target.value.split("-")[0]
         const ts = e.target.value.split("-")[1]
         const pk = e.target.value.split("-")[2]
+        fetchChannelInfo(pk, channel)
         fetch(`${apiBase}/channel-messages/`, {
             method: "POST",
             headers,
@@ -53,6 +55,35 @@
                 }
             })
     })
+    function fetchChannelInfo(client_pk, channel) {
+        if (!channel) {
+            channel = channelSwitch.value.split("-")[0]
+        }
+        if (!client_pk) {
+            client_pk = channelSwitch.value.split("-")[2]
+        }
+         fetch(`${apiBase}/channel-info/`, {
+            method: "POST",
+            headers,
+            body: JSON.stringify({client_pk, channel}),
+        })
+            .then(response => response.json())
+            .then(data => {
+                const error = data.error
+                if (error !== null) {
+                    alert(error)
+                }
+                const members = data.members
+                const membersElement = document.getElementById("members")
+                if (membersElement) {
+                    membersElement.innerHTML = ""
+                    members.forEach(member => {
+                        membersElement.innerHTML += `<p>${member}</p>`
+                    })
+                }
+            })
+       
+    }
     function fetchMessages() {
         if (latestTimestamp !== null) {
             const channel = channelSwitch.value.split("-")[0]
@@ -103,6 +134,7 @@
         sendMessage
     )
     setInterval(fetchMessages, 2000);
+    setInterval(fetchChannelInfo, 2000);
 
 </script>
 </html>
