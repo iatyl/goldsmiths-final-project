@@ -1,16 +1,17 @@
 # IRCHub (Final Year Project for BSc Computer Science)
 IRCHub is a modern IRC(Internet Relay Chat) client service for sane people.
 
-It's not good for now, but it will be great later.
+It's not great for now, but it will be good later.
 
 A rewrite in [Phoenix](https://www.phoenixframework.org/) will probably happen around Christmas to address several performance issues.
-
 
 # Prototype Demo
 A working instance is deployed on [Hetzner](https://www.hetzner.com/): [https://fyp.gscoursework.thealois.com](https://fyp.gscoursework.thealois.com)
 ## Credentials
 * username: `password`
 * password: `Goldsmiths`
+## Screenshots
+![](https://gitlab.doc.gold.ac.uk/zwang038/irchub/-/raw/main/screenshots/1.png)
 # how to run (on linux or macos)
 ## python version
 3.10.13 is mandatory.
