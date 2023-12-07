@@ -50,7 +50,6 @@ gunicorn -k gevent -w 1 irchub.wsgi:application
 ### Access the web page.
 Just go to `http://127.0.0.1:8000`.
 
+And for user management, please go to `http://127.0.0.1:8000/not-admin/`. (http://127.0.0.1:8000/admin/ is a honeypot)
 
 > Sapere aude.
-
-And for user management, please go to `http://127.0.0.1:8000/not-admin/`. (http://127.0.0.1:8000/admin/ is a honeypot)
