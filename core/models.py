@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from datetime import datetime
 
 from django.contrib.auth import get_user_model
+from django.core.cache import cache
 from django.db import models
 from django.utils import timezone
 from irc import events
@@ -30,8 +31,12 @@ class IRCClient(models.Model):
     _join_list = models.JSONField(default=list)
 
     def channel_members(self, channel: str) -> t.List[str]:
+        cache_key = f"client-pk-{self.pk}-{channel}"
         if channel not in self.join_list:
             return []
+        cached_result = cache.get(cache_key)
+        if cached_result:
+            return cached_result
         try:
             self.command(f"NAMES {channel}")
         except:
@@ -39,7 +44,7 @@ class IRCClient(models.Model):
         time.sleep(0.5)
         name_replies = (
             IRCEvent.objects.filter(client=self)
-            .filter(event_type="namereply")
+            .filter(event_type="namreply")
             .order_by("-inserted_at")
             .all()
         )
@@ -47,6 +52,7 @@ class IRCClient(models.Model):
             if len(reply.event_arguments) != 3 or reply.event_arguments[1] != channel:
                 continue
             people = reply.event_arguments[2].split()
+            cache.set(cache_key, cached_result, 100)
             return people
         return []
 
