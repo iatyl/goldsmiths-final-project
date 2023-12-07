@@ -20,7 +20,7 @@
     const headers = {"Authorization": `Token ${token}`,
         'Accept': 'application/json',
         'Content-Type': 'application/json'}
-    let latestTimestamp = null;
+    let latestTimestamp = Number.parseFloat(Date.now().toString().substring(0, 10) + '.1');
     let myNick = null;
     fetch(`${apiBase}/connected-clients/`, {headers})
         .then(response => response.json())
@@ -29,7 +29,6 @@
             for (let channel of data.clients[0].join_list) {
                 channelSwitch.innerHTML += `<option value="${channel}-${data.clients[0].connected_at}-${data.clients[0].pk}">${channel}</option>`
             }
-            latestTimestamp = data.clients[0].connected_at
         })
     channelSwitch.addEventListener("click", e => {
         const channel = e.target.value.split("-")[0]
