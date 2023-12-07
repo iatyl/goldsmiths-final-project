@@ -130,7 +130,7 @@ class IRCEvent(models.Model):
     )
     event_type = models.CharField(max_length=100)
     event_source = models.CharField(max_length=200, null=True, blank=True)
-    event_target = models.CharField(max_length=200)
+    event_target = models.CharField(max_length=200, null=True, blank=True)
     event_arguments = models.JSONField(default=list)
     inserted_at = models.DateTimeField(default=timezone.now)
 

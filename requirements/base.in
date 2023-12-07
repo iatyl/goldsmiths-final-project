@@ -9,3 +9,4 @@ django-cors-headers
 django-extensions
 environs[django]
 whitenoise
+git+https://github.com/dmpayton/django-admin-honeypot.git@develop

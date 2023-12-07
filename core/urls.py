@@ -1,10 +1,11 @@
-from django.urls import include, path
+from django.urls import include, path, re_path
+from rest_framework.authtoken import views as authtoken_views
 
 from . import views
 
 app_name = "core"
-
 api_urlpatterns = [
+    path("get-token/", authtoken_views.obtain_auth_token),
     path("channel-info/", views.ChannelInfoView.as_view(), name="channel_info"),
     path(
         "connected-clients/",
@@ -25,6 +26,6 @@ api_urlpatterns = [
 
 urlpatterns = [
     path("api/", include(api_urlpatterns)),
-    path("<str:path>", views.FrontendView.as_view()),
     path("", views.FrontendView.as_view()),
+    re_path(r"(?P<path>[\w+-/@.~+:]+)$", views.FrontendView.as_view()),
 ]

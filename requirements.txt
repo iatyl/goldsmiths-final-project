@@ -34,12 +34,16 @@ django==4.2.6
     #   django-stubs
     #   django-stubs-ext
     #   djangorestframework
+django-admin-honeypot @ git+https://github.com/dmpayton/django-admin-honeypot.git@develop
+    # via -r requirements/base.in
 django-cache-url==3.4.5
     # via environs
 django-cors-headers==4.3.1
     # via -r requirements/base.in
 django-extensions==3.2.3
     # via -r requirements/base.in
+django-ipware==6.0.2
+    # via django-admin-honeypot
 django-stubs==4.2.6
     # via
     #   -r requirements/base.in
@@ -127,6 +131,8 @@ pygments==2.17.2
     # via ipython
 python-dotenv==1.0.0
     # via environs
+python-ipware==2.0.0
+    # via django-ipware
 pytz==2023.3.post1
     # via
     #   djangorestframework

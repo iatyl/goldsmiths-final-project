@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework.authtoken",
     "django_extensions",
+    "admin_honeypot",
 ]
 
 MIDDLEWARE = [
