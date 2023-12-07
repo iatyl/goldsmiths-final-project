@@ -52,7 +52,7 @@ class IRCClient(models.Model):
             if len(reply.event_arguments) != 3 or reply.event_arguments[1] != channel:
                 continue
             people = reply.event_arguments[2].split()
-            cache.set(cache_key, cached_result, 100)
+            cache.set(cache_key, people, 100)
             return people
         return []
 
