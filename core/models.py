@@ -163,6 +163,7 @@ class IRCEvent(models.Model):
 class ChannelInfo:
     members: t.Optional[t.List[str]] = None
     error: t.Optional[str] = None
+
     def __post_init__(self):
         if self.members is None:
             self.members = []
