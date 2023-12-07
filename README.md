@@ -1,5 +1,5 @@
 # IRCHub (Final Year Project for BSc Computer Science)
-IRCHub is a modern IRC client service for sane people.
+IRCHub is a modern IRC(Internet Relay Chat) client service for sane people.
 
 It's not good for now, but it will be great later.
 
