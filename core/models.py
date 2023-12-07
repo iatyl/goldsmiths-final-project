@@ -161,5 +161,8 @@ class IRCEvent(models.Model):
 
 @dataclass
 class ChannelInfo:
-    members: t.List[str] = []
+    members: t.Optional[t.List[str]] = None
     error: t.Optional[str] = None
+    def __post_init__(self):
+        if self.members is None:
+            self.members = []
