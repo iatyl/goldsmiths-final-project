@@ -44,7 +44,7 @@ class ChannelInfoView(APIView):
             )
         if channel not in client.join_list:
             return Response(asdict(ChannelInfo(error="channel not joined")), status=400)
-        return Response(asdict(ChannelInfo(members=client.channel_member(channel))))
+        return Response(asdict(ChannelInfo(members=client.channel_members(channel))))
 
 
 class SendMessageView(APIView):
