@@ -5,6 +5,7 @@ from . import views
 app_name = "core"
 
 api_urlpatterns = [
+    path("channel-info/", views.ChannelInfoView.as_view(), name="channel_info"),
     path(
         "connected-clients/",
         views.ConnectedClientsView.as_view(),

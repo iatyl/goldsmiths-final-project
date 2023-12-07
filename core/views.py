@@ -1,5 +1,6 @@
 import datetime
 import os
+from dataclasses import asdict
 
 from django.conf import settings
 from django.http import FileResponse, Http404
@@ -8,7 +9,7 @@ from django.views import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from core.models import IRCClient, IRCEvent
+from core.models import ChannelInfo, IRCClient, IRCEvent
 
 
 class FrontendView(View):
@@ -23,6 +24,27 @@ class FrontendView(View):
             raise Http404("404 Not Found")
         file = open(path, "rb")
         return FileResponse(file)
+
+
+class ChannelInfoView(APIView):
+    def post(self, request, *args, **kwargs):
+        client_pk = request.data.get("client_pk")
+        channel = request.data.get("channel")
+        if not client_pk or not channel:
+            return Response(asdict(ChannelInfo(error="bad args")), status=400)
+        client = (
+            IRCClient.objects.filter(is_enabled=True)
+            .filter(user=request.user)
+            .filter(pk=client_pk)
+            .first()
+        )
+        if client is None:
+            return Response(
+                asdict(ChannelInfo(error="no such client or wrong user")), status=400
+            )
+        if channel not in client.join_list:
+            return Response(asdict(ChannelInfo(error="channel not joined")), status=400)
+        return Response(asdict(ChannelInfo(members=client.channel_member(channel))))
 
 
 class SendMessageView(APIView):

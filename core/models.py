@@ -1,10 +1,13 @@
 import threading
+import time
 import typing as t
+from dataclasses import dataclass
 from datetime import datetime
 
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
+from irc import events
 from irc.client import Event, Reactor, ServerConnection
 
 from corelibs.irc.store import all_connections
@@ -25,6 +28,33 @@ class IRCClient(models.Model):
     sasl_passwd = models.CharField(max_length=125, null=True, blank=True)
     is_enabled = models.BooleanField(default=True)
     _join_list = models.JSONField(default=list)
+
+    def channel_members(self, channel: str) -> t.List[str]:
+        if channel not in self.join_list:
+            return []
+        try:
+            self.command(f"NAMES {channel}")
+        except:
+            pass
+        time.sleep(0.5)
+        name_replies = (
+            IRCEvent.objects.filter(client=self)
+            .filter(event_type="namereply")
+            .order_by("-inserted_at")
+            .all()
+        )
+        for reply in name_replies:
+            if len(reply.event_arguments) != 3 or reply.event_arguments[1] != channel:
+                continue
+            people = reply.event_arguments[2].split()
+            return people
+        return []
+
+    def command(self, raw_command: str):
+        connection = self.get_connection()
+        if connection is None:
+            raise ValueError("could not get connection")
+        connection.send_raw(raw_command)
 
     @property
     def client_name(self) -> str:
@@ -56,7 +86,9 @@ class IRCClient(models.Model):
         self.get_connection()
         return all_connections[self.pk].connected_at
 
-    def get_connection(self) -> t.Optional[ServerConnection]:
+    def get_connection(self, reset=False) -> t.Optional[ServerConnection]:
+        if reset:
+            del all_connections[self.pk]
         if all_connections[self.pk].server_connection is not None:
             return all_connections[self.pk].server_connection
         all_connections[self.pk].is_pending = True
@@ -78,8 +110,8 @@ class IRCClient(models.Model):
 
         conn.add_global_handler("welcome", join_channels)
         handler = generate_event_handler(self.pk, IRCEvent.handle_for_client)
-        conn.add_global_handler("pubmsg", handler)
-        conn.add_global_handler("privmsg", handler)
+        for event in events.all:
+            conn.add_global_handler(event, handler)
         threading.Thread(target=reactor.process_forever).start()
         all_connections[self.pk].server_connection = conn
         all_connections[self.pk].is_pending = False
@@ -91,7 +123,7 @@ class IRCEvent(models.Model):
         IRCClient, null=True, blank=True, on_delete=models.CASCADE
     )
     event_type = models.CharField(max_length=100)
-    event_source = models.CharField(max_length=200)
+    event_source = models.CharField(max_length=200, null=True, blank=True)
     event_target = models.CharField(max_length=200)
     event_arguments = models.JSONField(default=list)
     inserted_at = models.DateTimeField(default=timezone.now)
@@ -125,3 +157,9 @@ class IRCEvent(models.Model):
         client = IRCClient.objects.get(pk=client_pk)
         irc_event = cls.from_event_object(client, event)
         irc_event.save()
+
+
+@dataclass
+class ChannelInfo:
+    members: t.List[str] = []
+    error: t.Optional[str] = None
