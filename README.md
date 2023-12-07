@@ -1,3 +1,8 @@
+# Demo
+A working instance is deployed on [Hetzner](https://www.hetzner.com/): [https://fyp.gscoursework.thealois.com](https://fyp.gscoursework.thealois.com)
+
+* username: `password`
+* password: `Goldsmiths`
 # how to run (on linux or macos)
 ## python version
 3.10.13 is mandatory.
