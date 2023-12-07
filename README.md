@@ -40,6 +40,14 @@ Install dependencies:
 run `cp .env.sample .env`, and edit `.env`.
 
 If you would like to use sqlite3 instead of mysql, please delete `DEV_DATABASE_URL` and `DATABASE_URL`. The sqlite3 database will be setup at the project's root directory, called `db.sqlite3`
+### Migrate DB
+```shell
+python3 ./manage.py migrate
+```
+### Collect Static Files
+```
+python3 ./manage.py collectstatic
+```
 ### Create a user
 ```
 python3 ./manage.py createsuperuser
