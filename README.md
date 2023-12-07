@@ -1,7 +1,7 @@
 # IRCHub
 IRCHub is a modern IRC client service for sane people.
 
-The prototype is up, where you can see channel members, chat with people or join channels (by editing the join list). It's not good for now, but it will be great later.
+It's not good for now, but it will be great later.
 
 A rewrite in [Phoenix](https://www.phoenixframework.org/) will probably happen around Christmas to address several performance issues.
 
