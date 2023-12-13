@@ -11,7 +11,7 @@ A working instance is deployed on [Hetzner](https://www.hetzner.com/): [https://
 * username: `password`
 * password: `Goldsmiths`
 ## Screenshots
-![](https://gitlab.doc.gold.ac.uk/zwang038/irchub/-/raw/main/screenshots/1.png)
+![](https://gitlab.doc.gold.ac.uk/zwang038/irchub/-/raw/main/screenshots/4.png)
 # how to run (on linux or macos)
 ## python version
 3.10.13 is mandatory.
