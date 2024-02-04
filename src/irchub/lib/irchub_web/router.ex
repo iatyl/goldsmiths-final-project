@@ -1,4 +1,5 @@
 defmodule IrchubWeb.Router do
+  alias IrchubWeb.ChatLive
   use IrchubWeb, :router
 
   import IrchubWeb.UserAuth
@@ -68,6 +69,12 @@ defmodule IrchubWeb.Router do
       on_mount: [{IrchubWeb.UserAuth, :ensure_authenticated}] do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
+      live "/clients", ClientLive.Index, :index
+      live "/clients/new", ClientLive.Index, :new
+      live "/clients/:id/edit", ClientLive.Index, :edit
+      live "/clients/:id", ClientLive.Show, :show
+      live "/clients/:id/show/edit", ClientLive.Show, :edit
+      live "/hub", HubLive.Index, :index
     end
   end
 
