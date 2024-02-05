@@ -1,3 +1,11 @@
 <.header>
   Chat
 </.header>
+<.table
+  id="clients"
+  rows={@streams.clients}
+>
+  <:col :let={{_id, client}} label="Network"><%= Enum.at(Tuple.to_list(List.keyfind(Irchub.Chat.ClientUtil.current_state(client), :network, 0)), 1) %></:col>
+  <:col :let={{_id, client}} label="Server"><%= Enum.at(Tuple.to_list(List.keyfind(Irchub.Chat.ClientUtil.current_state(client), :server, 0)), 1) %></:col>
+  <:col :let={{_id, client}} label="Nick"><%= Enum.at(Tuple.to_list(List.keyfind(Irchub.Chat.ClientUtil.current_state(client), :nick, 0)), 1) %></:col>
+</.table>

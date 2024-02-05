@@ -33,21 +33,47 @@ defmodule Irchub.Chat.Irc.Connection do
       ExIRC.Client.quit pid, "Leaving..."
       ExIRC.Client.stop! pid
   end
+  def get_pid(client) do
+    clients = Application.get_env(@appname, :clients, %{})
+    Map.get(clients, client.id)
+  end
+  def disconnect(client) do
+    clients = Application.get_env(@appname, :clients, %{})
+    pid = Map.get(clients, client.id)
+    if pid == nil do
+      :ok
+    else
+      close_connection(pid)
+      updated_clients = Map.delete(clients, client.id)
+      Application.put_env(@appname, :clients, updated_clients)
+    end
+  end
+
   def make_connection(url) do
       {:ok, data} = parse_url(url)
       ensure_backend()
       {:ok, pid} = ExIRC.start_client!
       if data.ssl? do
-        ExIRC.Client.connect! pid, data.host, data.port
-      else
         ExIRC.Client.connect_ssl! pid, data.host, data.port
+      else
+        ExIRC.Client.connect! pid, data.host, data.port
       end
       {:ok, %{pid: pid, data: data}}
   end
   def parse_channel_list(channel_list) do
     Poison.decode!(channel_list)
   end
-  def connect(client) do
+  def wait_logon_sync(client) do
+    pid = get_pid(client)
+    case pid != nil && ExIRC.Client.is_logged_on? pid do
+      true ->
+        :ok
+      false ->
+        :timer.sleep(300)
+        wait_logon_sync(client)
+    end
+  end
+  def ensure_connected(client) do
     existing_clients = Application.get_env(@appname, :clients, %{})
     existing_pid = Map.get(existing_clients, client.id)
     if existing_pid == nil do
@@ -62,10 +88,14 @@ defmodule Irchub.Chat.Irc.Connection do
           client.full_name
         )
       channel_list = parse_channel_list(client.channels)
-      Enum.each(channel_list, fn c -> ExIRC.Client.join pid, c end)
+      Task.async(fn ->
+        wait_logon_sync(client)
+        Enum.each(channel_list, fn c -> ExIRC.Client.join pid, c end)
+      end)
       store_pid(client, pid)
+      pid
     else
-      :ok
+      existing_pid
     end
   end
   def store_pid(client, pid) do

@@ -6,7 +6,7 @@ defmodule IrchubWeb.HubLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, stream(socket, :clients, Chat.list_clients())}
+    {:ok, stream(socket, :clients, Chat.list_clients)}
   end
 
   @impl true
