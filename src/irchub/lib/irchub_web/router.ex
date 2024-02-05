@@ -1,5 +1,4 @@
 defmodule IrchubWeb.Router do
-  alias IrchubWeb.ChatLive
   use IrchubWeb, :router
 
   import IrchubWeb.UserAuth
