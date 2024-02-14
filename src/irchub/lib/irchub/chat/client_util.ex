@@ -49,4 +49,8 @@ defmodule Irchub.Chat.ClientUtil do
       ExIRC.Client.state pid
     end
   end
+  def network(client) do
+    nw = String.trim(Enum.at(Tuple.to_list(List.keyfind(Irchub.Chat.ClientUtil.current_state(client), :network, 0)), 1))
+    if String.length(nw) == 0, do: client.tag, else: nw
+  end
 end

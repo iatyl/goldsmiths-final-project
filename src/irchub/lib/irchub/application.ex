@@ -17,7 +17,9 @@ defmodule Irchub.Application do
       # Start a worker by calling: Irchub.Worker.start_link(arg)
       # {Irchub.Worker, arg},
       # Start to serve requests, typically the last entry
-      IrchubWeb.Endpoint
+      IrchubWeb.Endpoint,
+      {DynamicSupervisor, name: Irchub.DynamicSupervisor, strategy: :one_for_one},
+      {Irchub.Chat.Irc.ConnectionPool, []},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

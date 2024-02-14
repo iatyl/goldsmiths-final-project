@@ -19,7 +19,7 @@ defmodule Irchub.MixProject do
   def application do
     [
       mod: {Irchub.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools],
     ]
   end
 

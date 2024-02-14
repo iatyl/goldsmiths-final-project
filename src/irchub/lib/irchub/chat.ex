@@ -20,6 +20,14 @@ defmodule Irchub.Chat do
   def list_clients do
     Repo.all(Client)
   end
+  def list_clients_by_user_id(id) do
+    q = from c in Client, select: c, where: c.irchub_user_id == ^id
+    Repo.all(q)
+  end
+  def list_connected_by_user_id(id) do
+    list_clients_by_user_id(id)
+    |> Enum.filter(fn c -> ExIRC.Client.is_connected?(Irchub.Chat.Irc.ConnectionPool.by_id(c.id)) end)
+  end
 
   @doc """
   Gets a single client.

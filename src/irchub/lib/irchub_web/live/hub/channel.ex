@@ -1,16 +1,12 @@
-defmodule IrchubWeb.HubLive.Index do
+defmodule IrchubWeb.HubLive.Channel do
   use IrchubWeb, :live_view
 
   alias Irchub.Chat
   alias Irchub.Chat.Client
-  alias Irchub.Chat.UserUtil
-
 
   @impl true
   def mount(_params, _session, socket) do
-    current_user = Map.get(socket.assigns, :current_user)
-    {:ok, socket
-    |> stream(:clients, current_user |> UserUtil.ensure_clients |> Chat.list_connected_by_user_id)}
+    {:ok, stream(socket, :clients, Chat.list_clients)}
   end
 
   @impl true
