@@ -53,4 +53,17 @@ defmodule Irchub.Chat.ClientUtil do
     nw = String.trim(Enum.at(Tuple.to_list(List.keyfind(Irchub.Chat.ClientUtil.current_state(client), :network, 0)), 1))
     if String.length(nw) == 0, do: client.tag, else: nw
   end
+  def list_channels(client) do
+    pid = Connection.get_pid(client)
+    if pid == nil do
+      []
+    else
+      ExIRC.Client.state(pid)
+      |> List.keyfind(:channels, 0)
+      |> Tuple.to_list
+      |> Enum.at(1)
+      |> Enum.map(fn t -> t |> Tuple.to_list |> Enum.at(0) end)
+    end
+
+  end
 end

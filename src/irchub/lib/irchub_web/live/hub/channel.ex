@@ -3,10 +3,21 @@ defmodule IrchubWeb.HubLive.Channel do
 
   alias Irchub.Chat
   alias Irchub.Chat.Client
+  alias Irchub.Chat.Irc.ConnectionPool
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, stream(socket, :clients, Chat.list_clients)}
+  def mount(params, _session, socket) do
+    client_id = Map.get(params, "client_id") |> String.to_integer
+    channel = Map.get(params, "channel")
+    client_tag = Irchub.Repo.get!(Client, client_id).tag
+    client = ConnectionPool.by_id(client_id) |> ExIRC.Client.state
+
+    {:ok, socket
+      |> assign(:client_state, client)
+      |> assign(:channel, channel)
+      |> assign(:client_tag, client_tag)
+      |> assign(:page_title, channel)
+    }
   end
 
   @impl true
@@ -28,7 +39,7 @@ defmodule IrchubWeb.HubLive.Channel do
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Clients")
+    # |> assign(:page_title, "Listing Clients")
     |> assign(:client, nil)
   end
 
