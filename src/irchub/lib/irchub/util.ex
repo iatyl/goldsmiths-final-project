@@ -8,4 +8,8 @@ defmodule Irchub.Util do
       |> Enum.at(1)
     end
   end
+
+  def broadcast(topic, event, data) do
+    IrchubWeb.Endpoint.broadcast(topic, to_string(event), data)
+  end
 end

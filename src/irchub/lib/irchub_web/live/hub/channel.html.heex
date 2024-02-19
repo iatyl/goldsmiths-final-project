@@ -1,12 +1,24 @@
 <.header>
   <%= Irchub.Util.pval(@client_state, :nick) %> : <%= @channel %> @ <%= Irchub.Util.pval(@client_state, :server) %>
 </.header>
-  <div class="messages" style="border: 1px solid #eee; height: 400px; overflow: scroll; margin-bottom: 8px;">
+  <div class="messages grid grid-flow-col gap-2" style="border: 1px solid #eee; height: 400px; overflow: scroll; margin-bottom: 8px;">
     <!-- messages go here -->
+    <div class="col-span-3">
+    Messages
     <%= for m <- @messages do %>
       <p style="margin: 2px;"><b><%= m.name %></b>: <%= m.message %></p>
     <% end %>
+    </div>
+    <div class="col-span-1">
+    Users:
+    <%= for user <- @userlist do %>
+      <p style="margin: 2px;"><b><%= user %></b></p>
+    <% end %>
+
+    </div>
   </div>
+
+
   <form phx-submit="send">
     <input type="text" name="message"/>
     <button type="submit">Send</button>

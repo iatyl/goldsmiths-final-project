@@ -35,7 +35,8 @@ defmodule Irchub.Chat.Irc.ConnectionBaseHandler do
     user = Irchub.Util.pval(client, :user)
     "#{user}@#{channel}@#{Irchub.Util.pval(client, :server)}:#{Integer.to_string(Irchub.Util.pval(client, :port))}"
   end
-  def a do
+  def update_userlist(pid, channel) do
+    Irchub.Util.broadcast(unique_id(pid, channel), :userlist, Irchub.Exirc.userlist(pid, channel))
   end
   def handle_info({:connected, server, port}, _state) do
     {:noreply, nil}
@@ -50,9 +51,15 @@ defmodule Irchub.Chat.Irc.ConnectionBaseHandler do
     {:noreply, nil}
   end
   def handle_info({:joined, channel}, _state) do
+    client_pid = ConnectionPool.by_handler(Kernel.self())
+    update_userlist(client_pid, channel)
+
     {:noreply, nil}
   end
   def handle_info({:joined, channel, user}, _state) do
+    client_pid = ConnectionPool.by_handler(Kernel.self())
+    update_userlist(client_pid, channel)
+
     {:noreply, nil}
   end
   def handle_info({:topic_changed, channel, topic}, _state) do
@@ -68,6 +75,9 @@ defmodule Irchub.Chat.Irc.ConnectionBaseHandler do
     {:noreply, nil}
   end
   def handle_info({:parted, channel, sender}, _state) do
+    client_pid = ConnectionPool.by_handler(Kernel.self())
+
+    update_userlist(client_pid, channel)
     nick = sender.nick
     {:noreply, nil}
   end
@@ -81,6 +91,8 @@ defmodule Irchub.Chat.Irc.ConnectionBaseHandler do
   end
   def handle_info({:kicked, nick, sender, channel}, _state) do
     by = sender.nick
+    client_pid = ConnectionPool.by_handler(Kernel.self())
+    update_userlist(client_pid, channel)
     {:noreply, nil}
   end
   def handle_info({:received, message, sender}, _state) do
@@ -90,7 +102,7 @@ defmodule Irchub.Chat.Irc.ConnectionBaseHandler do
   def handle_info({:received, message, sender, channel}, _state) do
     from = sender.nick
     client_pid = ConnectionPool.by_handler(Kernel.self())
-    IrchubWeb.Endpoint.broadcast(unique_id(client_pid, channel), "receive", %{name: from, message: message})
+    Irchub.Util.broadcast(unique_id(client_pid, channel), :received, %{name: from, message: message})
     {:noreply, nil}
   end
   def handle_info({:mentioned, message, sender, channel}, _state) do

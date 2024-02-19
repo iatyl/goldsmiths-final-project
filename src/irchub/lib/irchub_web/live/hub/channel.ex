@@ -48,14 +48,22 @@ defmodule IrchubWeb.HubLive.Channel do
   end
 
   defp apply_action(socket, :index, _params) do
+    client_pid = socket.assigns.client_id |> ConnectionPool.by_id
+    channel = socket.assigns.channel
     socket
     # |> assign(:page_title, "Listing Clients")
-    |> assign(:client, nil)
+    # |> assign(:client, nil)
+    |> assign(:userlist, Irchub.Exirc.userlist(client_pid, channel))
   end
   @impl true
-  def handle_info(%{event: "receive", payload: message}, socket) do
+  def handle_info(%{event: "received", payload: message}, socket) do
     {:noreply, assign(socket, messages: socket.assigns.messages ++ [message])}
   end
+  @impl true
+  def handle_info(%{event: "userlist", payload: userlist}, socket) do
+    {:noreply, assign(socket, userlist: userlist)}
+  end
+
  #  @impl true
  #  def handle_info({IrchubWeb.ClientLive.FormComponent, {:saved, client}}, socket) do
  #    {:noreply, stream_insert(socket, :clients, client)}
@@ -65,7 +73,7 @@ defmodule IrchubWeb.HubLive.Channel do
     channel = socket.assigns.channel
     IrchubWeb.Endpoint.broadcast(
       topic(client_id, channel),
-      "receive",
+      "received",
       %{message: message, name: Irchub.Util.pval(socket.assigns.client_state, :user)}
       )
     ConnectionPool.by_id(socket.assigns.client_id)
