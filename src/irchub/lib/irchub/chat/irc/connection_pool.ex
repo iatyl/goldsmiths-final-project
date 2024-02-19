@@ -29,12 +29,23 @@ defmodule Irchub.Chat.Irc.ConnectionPool do
   def all_clients do
     GenServer.call(__MODULE__, :state)
     |> Map.get(:clients)
+    |> Enum.map(fn {k, v} -> {k, v.client} end)
+    |> Enum.into(%{})
     |> Map.filter(fn {_, v} -> ExIRC.Client.is_connected? v end)
+  end
+  def by_handler(pid, type \\ :base_handler) do
+    GenServer.call(__MODULE__, :state)
+    |> Map.get(:clients)
+    |> Map.filter(fn {_, pids} -> Map.get(pids.handlers, type) == pid end)
+    |> Enum.map(fn {_, v} -> v.client end)
+    |> Enum.at(0)
+
   end
   def by_id(client_id) do
     GenServer.call(__MODULE__, :state)
     |> Map.get(:clients)
-    |> Map.get(client_id)
+    |> Map.get(client_id, %{})
+    |> Map.get(:client)
   end
   def ensure(client_id) do
     pid = by_id(client_id)
@@ -44,6 +55,7 @@ defmodule Irchub.Chat.Irc.ConnectionPool do
       pid
     end
   end
+
   def spawn_client(client_id) do
     GenServer.cast(__MODULE__, {:spawn, client_id})
     by_id(client_id)
@@ -60,8 +72,8 @@ defmodule Irchub.Chat.Irc.ConnectionPool do
     clients = Map.get(state, :clients)
     client = Irchub.Repo.get(Irchub.Chat.Client, client_id)
     if client != nil do
-      pid = connect(client)
-      clients = Map.put(clients, client_id, pid)
+      pids = connect(client)
+      clients = Map.put(clients, client_id, pids)
       new_state = Map.put(state, :clients, clients)
       {:noreply, new_state}
     else
@@ -72,7 +84,8 @@ defmodule Irchub.Chat.Irc.ConnectionPool do
   @impl true
   def handle_cast({:kill, client_id}, state) do
      clients = state |> Map.get(:clients)
-     pid = clients |> Map.get(client_id)
+     pids = clients |> Map.get(client_id)
+     pid = pids.client
      if pid != nil && Process.alive?(pid) do
        ExIRC.Client.quit pid, "Leaving..."
        ExIRC.Client.stop! pid
@@ -125,6 +138,7 @@ defmodule Irchub.Chat.Irc.ConnectionPool do
   def connect(client) do
     {:ok, data} = parse_url(client.url)
     {:ok, pid} = ExIRC.start_link!
+    {:ok, base_handler_pid} = Irchub.Chat.Irc.ConnectionBaseHandler.start_link(pid)
     if data.ssl? do
       ExIRC.Client.connect_ssl! pid, data.host, data.port
     else
@@ -144,6 +158,6 @@ defmodule Irchub.Chat.Irc.ConnectionPool do
           {:ok} -> Enum.each(channel_list, fn c -> ExIRC.Client.join pid, c end)
         end
       end)
-    pid
+    %{client: pid, handlers: %{base_handler: base_handler_pid}}
   end
 end

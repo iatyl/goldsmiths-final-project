@@ -1,3 +1,13 @@
 <.header>
   <%= Irchub.Util.pval(@client_state, :nick) %> : <%= @channel %> @ <%= Irchub.Util.pval(@client_state, :server) %>
 </.header>
+  <div class="messages" style="border: 1px solid #eee; height: 400px; overflow: scroll; margin-bottom: 8px;">
+    <!-- messages go here -->
+    <%= for m <- @messages do %>
+      <p style="margin: 2px;"><b><%= m.name %></b>: <%= m.message %></p>
+    <% end %>
+  </div>
+  <form phx-submit="send">
+    <input type="text" name="message"/>
+    <button type="submit">Send</button>
+  </form>
