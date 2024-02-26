@@ -1,9 +1,11 @@
 #!/usr/bin/env sh
-hash pipenv >/dev/null 2>&1 || {
-    echo "pipenv is not available in path"
-    exit
-}
-PORT=$1
-[ "${PORT}x" = "x" ] && PORT=4440
-pipenv install irc --skip-lock --ignore-pipfile -q 2>/dev/null
-pipenv run python -m irc.server -a 127.0.0.1 -p $PORT
+ACTION=$1
+[ "${ACTION}x" = "x" ] && ACTION="up"
+
+if [ "$ACTION" = "up" ]; then 
+    docker container run --rm --name irchub-ircd -p 127.0.0.1:4440:6667 inspircd/inspircd-docker
+fi
+
+if [ "$ACTION" = "down" ]; then
+    docker container rm -f irchub-ircd
+fi
