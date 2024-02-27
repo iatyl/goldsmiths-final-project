@@ -30,11 +30,12 @@ defmodule Irchub.Chat.Irc.ConnectionBaseHandler do
       IO.puts "Received a message in \#{to} from \#{from}: \#{msg}"
     end
   """
-  def unique_id(pid, channel) do
+  def unique_id(pid, target) do
     client = ExIRC.Client.state(pid)
     user = Irchub.Util.pval(client, :user)
-    "#{user}@#{channel}@#{Irchub.Util.pval(client, :server)}:#{Integer.to_string(Irchub.Util.pval(client, :port))}"
+    "#{user}@#{target}@#{Irchub.Util.pval(client, :server)}:#{Integer.to_string(Irchub.Util.pval(client, :port))}"
   end
+
   def update_userlist(pid, channel) do
     Irchub.Util.broadcast(unique_id(pid, channel), :userlist, Irchub.Exirc.userlist(pid, channel))
   end

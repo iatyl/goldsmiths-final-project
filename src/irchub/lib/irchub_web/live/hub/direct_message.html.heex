@@ -1,23 +1,12 @@
 <.header>
-  <%= Irchub.Util.pval(@client_state, :nick) %> : <%= @channel %> @ <%= Irchub.Util.pval(@client_state, :server) %>
+  Chatting with <span class="border-4 border-indigo-500"><%= Irchub.Util.pval(@client_state, :nick) %></span> @ <%= Irchub.Util.pval(@client_state, :server) %>
 </.header>
   <div class="messages grid grid-flow-col gap-2" style="border: 1px solid #eee; height: 400px; overflow: scroll; margin-bottom: 8px;">
     <!-- messages go here -->
-    <div class="col-span-3">
     Messages
     <%= for m <- @messages do %>
       <p style="margin: 2px;"><b><%= m.name %></b>: <%= m.message %></p>
     <% end %>
-    </div>
-    <div class="col-span-1">
-    Users:
-    <%= for nick <- @userlist do %>
-    <.link href={~p"/clients/#{@client_id}/nicks/#{nick}/"}>
-      <p style="margin: 2px;"><b><%= nick %></b></p>
-    </.link>
-    <% end %>
-
-    </div>
   </div>
 
 

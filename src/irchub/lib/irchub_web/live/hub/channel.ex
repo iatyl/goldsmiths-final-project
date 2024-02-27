@@ -50,10 +50,14 @@ defmodule IrchubWeb.HubLive.Channel do
   defp apply_action(socket, :index, _params) do
     client_pid = socket.assigns.client_id |> ConnectionPool.by_id
     channel = socket.assigns.channel
-    socket
     # |> assign(:page_title, "Listing Clients")
     # |> assign(:client, nil)
-    |> assign(:userlist, Irchub.Exirc.userlist(client_pid, channel))
+    userlist = Irchub.Exirc.userlist(client_pid, channel)
+
+    socket
+    |> assign(:userlist, userlist)
+    |> assign(:nicklist, userlist)
+
   end
   @impl true
   def handle_info(%{event: "received", payload: message}, socket) do

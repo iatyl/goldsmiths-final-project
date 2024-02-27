@@ -10,7 +10,9 @@ defmodule IrchubWeb.HubLive.Index do
   def mount(_params, _session, socket) do
     current_user = Map.get(socket.assigns, :current_user)
     {:ok, socket
-    |> stream(:clients, current_user |> UserUtil.ensure_clients |> Chat.list_connected_by_user_id)}
+    |> stream(:clients, current_user
+                        |> UserUtil.ensure_clients
+                        |> Chat.list_connected_by_user_id)}
   end
 
   @impl true

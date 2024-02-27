@@ -75,6 +75,7 @@ defmodule IrchubWeb.Router do
       live "/clients/:id/show/edit", ClientLive.Show, :edit
       live "/hub", HubLive.Index, :index
       live "/clients/:client_id/channels/:channel", HubLive.Channel, :index
+      live "/clients/:client_id/nicks/:nick", HubLive.DirectMessage, :index
     end
   end
 
