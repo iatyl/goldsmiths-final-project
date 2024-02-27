@@ -15,7 +15,7 @@ defmodule Irchub.Util do
   end
 
   def fmt(markup, nicks \\ nil, client_id \\ nil, language \\ :html) do
-    assigns = %{}
-    ~H"<%= markup %>"
+    assigns = %{markup: markup}
+    ~H"<%= @markup %>"
   end
 end
