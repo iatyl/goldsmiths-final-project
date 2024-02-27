@@ -1,16 +1,16 @@
 <.header>
-  Chatting with <span class="border-4 border-indigo-500"><%= Irchub.Util.pval(@client_state, :nick) %></span> @ <%= Irchub.Util.pval(@client_state, :server) %>
+  Chatting with <span class="border-4 border-indigo-500"><%= @nick %></span> @ <%= Irchub.Util.pval(@client_state, :server) %>
 </.header>
-  <div class="messages grid grid-flow-col gap-2" style="border: 1px solid #eee; height: 400px; overflow: scroll; margin-bottom: 8px;">
+  <div class="messages gap-2" style="border: 1px solid #eee; height: 400px; overflow: scroll; margin-bottom: 8px;">
     <!-- messages go here -->
-    Messages
     <%= for m <- @messages do %>
-      <p style="margin: 2px;"><b><%= m.name %></b>: <%= m.message %></p>
+      <p style="margin: 2px;"><b><%= Irchub.Util.fmt(m.name) %></b>: <%= Irchub.Util.fmt(m.message) %></p>
     <% end %>
   </div>
-
-
+  <div>
   <form phx-submit="send">
-    <input type="text" name="message"/>
+    <input type="text" name="message" required="required"/>
     <button type="submit">Send</button>
   </form>
+  </div>
+

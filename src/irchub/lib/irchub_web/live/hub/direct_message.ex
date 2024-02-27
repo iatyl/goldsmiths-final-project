@@ -46,9 +46,25 @@ defmodule IrchubWeb.HubLive.DirectMessage do
     |> assign(:page_title, "New Client")
     |> assign(:client, %Client{})
   end
-
   defp apply_action(socket, :index, _params) do
-    client_pid = socket.assigns.client_id
     socket
+  end
+
+  @impl true
+  def handle_info(%{event: "received", payload: message}, socket) do
+    {:noreply, assign(socket, messages: socket.assigns.messages ++ [message])}
+  end
+  @impl true
+  def handle_event("send", %{"message" => message}, socket) do
+    client_id = socket.assigns.client_id
+    nick = socket.assigns.nick
+    IrchubWeb.Endpoint.broadcast(
+      topic(client_id, nick),
+      "received",
+      %{message: message, name: Irchub.Util.pval(socket.assigns.client_state, :user)}
+      )
+    ConnectionPool.by_id(socket.assigns.client_id)
+    |> ExIRC.Client.msg(:privmsg, nick, message)
+    {:noreply, socket}
   end
 end

@@ -98,7 +98,10 @@ defmodule Irchub.Chat.Irc.ConnectionBaseHandler do
   end
   def handle_info({:received, message, sender}, _state) do
     from = sender.nick
+    client_pid = ConnectionPool.by_handler(Kernel.self())
+    Irchub.Util.broadcast(unique_id(client_pid, from), :received, %{name: from, message: message})
     {:noreply, nil}
+
   end
   def handle_info({:received, message, sender, channel}, _state) do
     from = sender.nick

@@ -72,6 +72,7 @@ defmodule IrchubWeb.HubLive.Channel do
  #  def handle_info({IrchubWeb.ClientLive.FormComponent, {:saved, client}}, socket) do
  #    {:noreply, stream_insert(socket, :clients, client)}
  #  end
+  @impl true
   def handle_event("send", %{"message" => message}, socket) do
     client_id = socket.assigns.client_id
     channel = socket.assigns.channel
