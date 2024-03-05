@@ -139,7 +139,7 @@ defmodule Irchub.Chat.Irc.ConnectionPool do
     URI.parse(url).host == "127.0.0.1"
   end
   def connect(client) do
-    if Application.get_env(:irchub, :gctx).mode == :local and is_local(client.url) == true do
+    if Application.get_env(:irchub, :gctx).mode == :local and is_local(client.url) == false do
       {:ok, pid} = ExIRC.start_link!
       %{client: pid, handlers: %{base_handler: nil}}
     else
