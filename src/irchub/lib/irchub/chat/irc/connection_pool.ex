@@ -123,7 +123,7 @@ defmodule Irchub.Chat.Irc.ConnectionPool do
   end
   def wait_logon_sync(client, timeout \\ 30000) do
     if timeout >= 0 do
-      pid = by_id(client.id)
+      pid = if Kernel.is_pid(client), do: client, else: by_id(client.id)
       case pid != nil && ExIRC.Client.is_logged_on? pid do
         true ->
           {:ok}
@@ -135,7 +135,19 @@ defmodule Irchub.Chat.Irc.ConnectionPool do
       {:timeout}
     end
   end
+  def is_local(url) do
+    URI.parse(url).host == "127.0.0.1"
+  end
   def connect(client) do
+    if Application.get_env(:irchub, :gctx).mode == :local and is_local(client.url) == true do
+      {:ok, pid} = ExIRC.start_link!
+      %{client: pid, handlers: %{base_handler: nil}}
+    else
+      do_connect(client)
+    end
+
+  end
+  def do_connect(client) do
     {:ok, data} = parse_url(client.url)
     {:ok, pid} = ExIRC.start_link!
     {:ok, base_handler_pid} = Irchub.Chat.Irc.ConnectionBaseHandler.start_link(pid)
