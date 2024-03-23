@@ -18,4 +18,11 @@ defmodule Irchub.Util do
     assigns = %{markup: markup}
     ~H"<%= @markup %>"
   end
+  def global_context do
+    Application.get_env(:irchub, :gctx, %{})
+  end
+  def post_json(url, data \\ %{}) do
+    encoded = Poison.encode!(data)
+    HTTPoison.post(url, encoded, [{"Content-Type", "application/json"}])
+  end
 end

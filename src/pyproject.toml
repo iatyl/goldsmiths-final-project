@@ -1,0 +1,27 @@
+[project]
+name = "src"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "zwang038@gold.ac.uk", email = "zwang038@gold.ac.uk" }
+]
+dependencies = [
+    "django==4.2.*",
+    "environs[django]>=11.0.0",
+    "django-stubs==4.2.7",
+    "ipython>=8.22.2",
+    "whitenoise>=6.6.0",
+    "hypercorn>=0.16.0",
+    "trio>=0.25.0",
+    "gevent>=24.2.1",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[tool.rye]
+managed = true
+virtual = true
+dev-dependencies = [
+    "black>=24.3.0",
+    "isort>=5.13.2",
+]

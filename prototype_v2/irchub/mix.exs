@@ -19,7 +19,7 @@ defmodule Irchub.MixProject do
   def application do
     [
       mod: {Irchub.Application, []},
-      extra_applications: [:logger, :runtime_tools],
+      extra_applications: [:logger, :runtime_tools, :httpoison],
     ]
   end
 
@@ -53,7 +53,8 @@ defmodule Irchub.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:plug_cowboy, "~> 2.5"},
       {:exirc, "~> 2.0.0"},
-      {:poison, "~> 5.0"}
+      {:poison, "~> 5.0"},
+      {:httpoison, "~> 2.0"}
     ]
   end
 
