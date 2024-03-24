@@ -47,7 +47,6 @@ environs==11.0.0
 exceptiongroup==1.2.0
     # via ipython
     # via pytest
-    # via taskgroup
 executing==2.0.1
     # via stack-data
 factory-boy==3.3.0
@@ -56,16 +55,7 @@ faker==24.3.0
 gevent==24.2.1
 greenlet==3.0.3
     # via gevent
-h11==0.14.0
-    # via hypercorn
-    # via wsproto
-h2==4.1.0
-    # via hypercorn
-hpack==4.0.0
-    # via h2
-hypercorn==0.16.0
-hyperframe==6.0.1
-    # via h2
+gunicorn==21.2.0
 inflect==7.0.0
     # via jaraco-text
 iniconfig==2.0.0
@@ -102,6 +92,7 @@ mypy-extensions==1.0.0
     # via black
 packaging==24.0
     # via black
+    # via gunicorn
     # via marshmallow
     # via pytest
     # via pytest-sugar
@@ -115,8 +106,6 @@ platformdirs==4.2.0
     # via black
 pluggy==1.4.0
     # via pytest
-priority==2.0.0
-    # via hypercorn
 prompt-toolkit==3.0.43
     # via ipython
 psycopg2-binary==2.9.9
@@ -154,8 +143,6 @@ sqlparse==0.4.4
     # via django
 stack-data==0.6.3
     # via ipython
-taskgroup==0.0.0a4
-    # via hypercorn
 tempora==5.5.1
     # via irc
     # via jaraco-logging
@@ -164,7 +151,6 @@ termcolor==2.4.0
 tomli==2.0.1
     # via black
     # via django-stubs
-    # via hypercorn
     # via pytest
 traitlets==5.14.2
     # via ipython
@@ -185,8 +171,6 @@ typing-extensions==4.10.0
 wcwidth==0.2.13
     # via prompt-toolkit
 whitenoise==6.6.0
-wsproto==1.2.0
-    # via hypercorn
 zope-event==5.0
     # via gevent
 zope-interface==6.2

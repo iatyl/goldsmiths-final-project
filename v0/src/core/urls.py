@@ -27,5 +27,5 @@ api_urlpatterns = [
 urlpatterns = [
     path("api/", include(api_urlpatterns)),
     path("", views.FrontendView.as_view()),
-    re_path(r"(?P<path>[\w+-/@.~+:]+)$", views.FrontendView.as_view()),
+    # re_path(r"(?P<path>[\w+-/@.~+:]+)$", views.FrontendView.as_view()),
 ]

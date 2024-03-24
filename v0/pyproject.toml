@@ -11,7 +11,6 @@ dependencies = [
     "irc>=20.3.1",
     "pydantic>=2.6.4",
     "djangorestframework>=3.15.1",
-    "hypercorn>=0.16.0",
     "gevent>=24.2.1",
     "django-cors-headers>=4.3.1",
     "django-extensions>=3.2.3",
@@ -19,6 +18,7 @@ dependencies = [
     "whitenoise>=6.6.0",
     "django-admin-honeypot @ git+https://github.com/dmpayton/django-admin-honeypot.git@develop",
     "psycopg2-binary>=2.9.9",
+    "gunicorn>=21.2.0",
 ]
 readme = "README.md"
 requires-python = "== 3.10.13"
