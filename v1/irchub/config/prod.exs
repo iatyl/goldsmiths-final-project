@@ -8,10 +8,14 @@ import Config
 config :irchub, IrchubWeb.Endpoint, cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Configures Swoosh API Client
-config :swoosh, api_client: Swoosh.ApiClient.Finch, finch_name: Irchub.Finch
+# config :swoosh, api_client: Swoosh.ApiClient.Finch, finch_name: Irchub.Finch
 
 # Disable Swoosh Local Memory Storage
-config :swoosh, local: false
+# config :swoosh, local: false
+
+# disable swoosh api client
+config :swoosh, api_client: false
+config :swoosh, local: true
 
 # Do not print debug messages in production
 config :logger, level: :info
