@@ -3,6 +3,7 @@ defmodule IrchubWeb.ClientLiveTest do
 
   import Phoenix.LiveViewTest
   import Irchub.ChatFixtures
+  import Irchub.AccountsFixtures
 
   @create_attrs %{channels: "some channels", full_name: "some full_name", irchub_user_id: 42, is_enabled: true, nick: "some nick", tag: "some tag", url: "some url"}
   @update_attrs %{channels: "some updated channels", full_name: "some updated full_name", irchub_user_id: 43, is_enabled: false, nick: "some updated nick", tag: "some updated tag", url: "some updated url"}
@@ -24,6 +25,17 @@ defmodule IrchubWeb.ClientLiveTest do
     end
 
     test "saves new client", %{conn: conn} do
+      password = "123456789abcd"
+      user = user_fixture(%{password: password})
+
+      {:ok, lv, _html} = live(conn, ~p"/users/log_in")
+
+      form =
+        form(lv, "#login_form", user: %{email: user.email, password: password, remember_me: true})
+
+      conn = submit_form(form, conn)
+
+      assert redirected_to(conn) == ~p"/"
       {:ok, index_live, _html} = live(conn, ~p"/clients")
 
       assert index_live |> element("a", "New Client") |> render_click() =~
