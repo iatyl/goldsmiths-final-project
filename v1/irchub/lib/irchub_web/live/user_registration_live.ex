@@ -36,6 +36,8 @@ defmodule IrchubWeb.UserRegistrationLive do
 
         <:actions>
           <.button phx-disable-with="Creating account..." class="w-full">Create an account</.button>
+          <.link class="w-full focus:outline-none text-white text-sm bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg px-5 py-2.5 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+          navigate={~p"/social_auth/github"}>Sign up with GitHub</.link>
         </:actions>
       </.simple_form>
     </div>

@@ -30,7 +30,7 @@ defmodule IrchubWeb.UserLoginLive do
             Sign in <span aria-hidden="true">→</span>
           </.button>
           <.link class="w-full focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg px-5 py-2.5 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-           href={~p"/social_auth/github"}>Sign in with GitHub</.link>
+           navigate={~p"/social_auth/github"}>Sign in with GitHub</.link>
         </:actions>
 
       </.simple_form>

@@ -33,18 +33,20 @@ defmodule Irchub.Accounts.Social.Github do
     }
     post_data = if state == nil, do: base_data, else: Map.put(base_data, :state, state)
 
-    resp = Poison.decode!(HTTPoison.post!(
+    resp = HTTPoison.post!(
       post_url,
       Poison.encode!(post_data),
       [{"Content-Type", "application/json"}]
-    ).body)
-    Map.get(resp, "access_token")
+    ).body
+    Map.get(URI.decode_query(resp), "access_token")
   end
   def user_email(auth_token) do
     headers = [
-      {"Authorization",  "token #{auth_token}"},
+      {"Authorization",  "bearer #{auth_token}"},
     ]
     resp = Poison.decode!(HTTPoison.get!(~s(https://api.github.com/user), headers).body)
-    Map.get(resp, "email")
+
+    email = Map.get(resp, "email")
+    email || ~s(#{:crypto.hash(:sha, Map.get(resp, "id") |> Integer.to_string(16)) |> Base.encode16}@github.irchub.local)
   end
 end

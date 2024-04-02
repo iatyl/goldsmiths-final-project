@@ -59,6 +59,7 @@ defmodule IrchubWeb.Router do
       live "/users/reset_password/:token", UserResetPasswordLive, :edit
     end
 
+    get "/social_auth/github_callback", GithubCallbackController, :create
     post "/users/log_in", UserSessionController, :create
   end
 
