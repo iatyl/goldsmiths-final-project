@@ -25,4 +25,24 @@ defmodule Irchub.Util do
     encoded = Poison.encode!(data)
     HTTPoison.post(url, encoded, [{"Content-Type", "application/json"}])
   end
+  def push_github_state(state) do
+    current_states = Application.get_env(:irchub, :github_states, MapSet.new())
+    if MapSet.member?(current_states, state) do
+      false
+    else
+      new_states = current_states |> MapSet.put(state)
+      Application.put_env(:irchub, :github_states, new_states)
+      true
+    end
+  end
+  def pop_github_state(state) do
+    current_states = Application.get_env(:irchub, :github_states, MapSet.new())
+    if MapSet.member?(current_states, state) == false do
+      false
+    else
+      new_states = MapSet.delete(current_states, state)
+      Application.put_env(:irchub, :github_states, new_states)
+      true
+    end
+  end
 end

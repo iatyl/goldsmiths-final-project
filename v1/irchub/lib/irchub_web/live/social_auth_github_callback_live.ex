@@ -1,5 +1,7 @@
-defmodule IrchubWeb.UserLoginLive do
+defmodule IrchubWeb.SocialAuthGithubCallbackLive do
   use IrchubWeb, :live_view
+  alias Irchub.Util
+  alias Irchub.Accounts.Social.Github
 
   def render(assigns) do
     ~H"""
@@ -39,9 +41,16 @@ defmodule IrchubWeb.UserLoginLive do
     """
   end
 
-  def mount(_params, _session, socket) do
-    email = live_flash(socket.assigns.flash, :email)
-    form = to_form(%{"email" => email}, as: "user")
-    {:ok, assign(socket, form: form), temporary_assigns: [form: form]}
+  def mount(%{"code" => code, "state" => state}, _session, socket) do
+    if Util.pop_github_state(state) == false do
+      {:ok, assign(socket, message: "Could not sign you in. Reason: Invalid client state.")}
+    else
+      access_token = Github.access_token(code, state)
+      if access_token == nil do
+        {:ok, assign(socket, message: "Could not sign you in. Reason: Invalid access token.")}
+      else
+        {:ok, socket}
+      end
+    end
   end
 end

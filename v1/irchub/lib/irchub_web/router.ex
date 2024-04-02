@@ -54,6 +54,7 @@ defmodule IrchubWeb.Router do
       on_mount: [{IrchubWeb.UserAuth, :redirect_if_user_is_authenticated}] do
       live "/users/register", UserRegistrationLive, :new
       live "/users/log_in", UserLoginLive, :new
+      live "/social_auth/github", SocialAuthGithubLive, :new
       live "/users/reset_password", UserForgotPasswordLive, :new
       live "/users/reset_password/:token", UserResetPasswordLive, :edit
     end
