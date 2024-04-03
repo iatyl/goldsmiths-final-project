@@ -9,7 +9,7 @@
 </.header>
 
 <.list>
-  <:item title="Irchub user"><%= @client.irchub_user_id %></:item>
+  <%# <:item title="Irchub user"><%= @client.irchub_user_id</:item> %>
   <:item title="Tag"><%= @client.tag %></:item>
   <:item title="Url"><%= @client.url %></:item>
   <:item title="Nick"><%= @client.nick %></:item>
@@ -27,6 +27,7 @@
     title={@page_title}
     action={@live_action}
     client={@client}
+    current_user={@current_user}
     patch={~p"/clients/#{@client}"}
   />
 </.modal>

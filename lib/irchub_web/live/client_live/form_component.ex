@@ -19,7 +19,7 @@ defmodule IrchubWeb.ClientLive.FormComponent do
         phx-change="validate"
         phx-submit="save"
       >
-        <.input field={@form[:irchub_user_id]} type="number" label="Irchub user" />
+        <.input field={@form[:irchub_user_id]} type="hidden" label="" value={@current_user.id}/>
         <.input field={@form[:tag]} type="text" label="Tag" />
         <.input field={@form[:url]} type="text" label="Url" />
         <.input field={@form[:nick]} type="text" label="Nick" />
@@ -46,6 +46,15 @@ defmodule IrchubWeb.ClientLive.FormComponent do
 
   @impl true
   def handle_event("validate", %{"client" => client_params}, socket) do
+    current_user_id = Map.get(socket.assigns, :current_user, %{}) |> Map.get(:id) || -1
+    current_user_id = current_user_id |> Integer.to_string
+    user_id = if Map.get(client_params, "irchub_user_id") == current_user_id do
+      current_user_id
+    else
+      -1
+    end
+    client_params = Map.put(client_params, "irchub_user_id", user_id)
+
     changeset =
       socket.assigns.client
       |> Chat.change_client(client_params)

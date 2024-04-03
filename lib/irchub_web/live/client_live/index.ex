@@ -6,7 +6,13 @@ defmodule IrchubWeb.ClientLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, stream(socket, :clients, Chat.list_clients())}
+    current_user_id = socket.assigns |> Map.get(:current_user, %{}) |> Map.get(:id)
+    client_stream = if current_user_id == nil do
+      []
+    else
+      Chat.list_clients_by_user_id(current_user_id)
+    end
+    {:ok, socket |> assign(:current_user_id, current_user_id) |> stream(:clients, client_stream)}
   end
 
   @impl true
