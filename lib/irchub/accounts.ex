@@ -5,6 +5,7 @@ defmodule Irchub.Accounts do
 
   import Ecto.Query, warn: false
   alias Irchub.Repo
+  alias Irchub.Util
 
   alias Irchub.Accounts.{User, UserToken, UserNotifier}
 
@@ -75,9 +76,30 @@ defmodule Irchub.Accounts do
 
   """
   def register_user(attrs) do
-    %User{}
+    {result, attrs} = %User{}
     |> User.registration_changeset(attrs)
     |> Repo.insert()
+    if result == :ok && Map.get(Util.global_context(), :local_server) != nil do
+      user_id = ~s(user#{attrs.id})
+      local_server = Map.get(Util.global_context(), :local_server)
+      server = URI.parse(local_server)
+      query_params = URI.decode_query(server.query)
+      channels = Map.get(query_params, "channels")
+                 |> String.split(",")
+                 |> Poison.encode!
+      client = %Irchub.Chat.Client{
+        channels: channels,
+        full_name: user_id,
+        irchub_user_id: attrs.id,
+        is_enabled: true,
+        nick: user_id,
+        tag: "Local Lounge",
+        url: ~s(#{server.scheme}://#{user_id}:@#{server.host}:#{server.port})
+      }
+      result2 = Repo.insert!(client)
+      IO.inspect result2
+    end
+    {result, attrs}
   end
 
   @doc """

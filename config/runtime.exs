@@ -20,7 +20,16 @@ if System.get_env("PHX_SERVER") do
   config :irchub, IrchubWeb.Endpoint, server: true
 end
 
-config :irchub, :gctx, %{mode: :local, github_client_id: System.get_env("GITHUB_CLIENT_ID"), github_client_secret: System.get_env("GITHUB_CLIENT_SECRET")}
+config :irchub, :gctx, %{
+  mode: :local,
+  github_client_id: System.get_env("GITHUB_CLIENT_ID"),
+  github_client_secret: System.get_env("GITHUB_CLIENT_SECRET"),
+  local_server: System.get_env("LOCAL_SERVER"),
+  server_allow_list: System.get_env("SERVER_ALLOW_LIST", "")
+                     |> String.split(",")
+                     |> Enum.filter(fn s -> String.length(s) > 0 end)
+                     |> Enum.map(&String.trim/1)
+}
 
 if config_env() == :prod do
   database_url =
