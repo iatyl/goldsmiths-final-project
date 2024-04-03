@@ -1,9 +1,0 @@
-.venv
-.idea
-.vscode
-requirements.txt
-__pycache__
-db.sqlite3
-.env
-staticfiles
-.pytest_cache
