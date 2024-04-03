@@ -96,8 +96,7 @@ defmodule Irchub.Accounts do
         tag: "Local Lounge",
         url: ~s(#{server.scheme}://#{user_id}:@#{server.host}:#{server.port})
       }
-      result2 = Repo.insert!(client)
-      IO.inspect result2
+      Repo.insert!(client)
     end
     {result, attrs}
   end
