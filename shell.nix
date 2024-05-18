@@ -18,7 +18,7 @@ pkgs.mkShell {
   ];
     shellHook =
   ''
-  cowsay -f dragon.cow "IRCHub Development Shell!"
+  cowsay "IRCHub Development Shell!"
   '';
 
 }

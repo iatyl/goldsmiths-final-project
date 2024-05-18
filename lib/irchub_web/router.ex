@@ -11,6 +11,7 @@ defmodule IrchubWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_current_user
+    plug IrchubWeb.Plugs.FetchCookieConsentStatus
   end
 
   pipeline :api do
@@ -25,7 +26,7 @@ defmodule IrchubWeb.Router do
 
   # Other scopes may use custom stacks.
   # scope "/api", IrchubWeb do
-  #   pipe_through :api
+    # pipe_through :api
   # end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
@@ -44,9 +45,12 @@ defmodule IrchubWeb.Router do
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end
+  scope "/", IrchubWeb do
+    pipe_through [:browser]
+    get "/cookie_consent/agree", CookieConsentController, :agree
+  end
 
   ## Authentication routes
-
   scope "/", IrchubWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 

@@ -6,7 +6,7 @@
     <div class="col-span-3">
     Messages
     <%= for m <- @messages do %>
-      <p style="margin: 2px;"><b><%= Irchub.Util.fmt(m.name) %></b>: <%= Irchub.Util.fmt(m.message) %></p>
+      <p style="margin: 2px;"><b><%= raw Irchub.Util.fmt(m.name) %></b>: <%= raw Irchub.Util.fmt(m.message, @userlist) %></p>
     <% end %>
     </div>
     <div class="col-span-1">
@@ -22,6 +22,9 @@
 
 
   <form phx-submit="send">
-    <input type="text" name="message" required="required"/>
+    <!-- Enter is not submit! -->
+    <!-- https://stackoverflow.com/a/51507806 -->
+    <button type="submit" disabled style="display: none" aria-hidden="true"></button>
+    <input type="text" name="message" required="required" placeholder="Hello world...">
     <button type="submit">Send</button>
   </form>

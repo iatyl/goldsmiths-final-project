@@ -22,6 +22,11 @@ end
 
 config :irchub, :gctx, %{
   mode: :local,
+  # :local, :restricted or :public
+  # local: only able to connect to local (127.0.0.1/8) servers
+  # restricted: only able to connect to local and allow-listed servers
+  # public: able to connect to any server
+
   github_client_id: System.get_env("GITHUB_CLIENT_ID"),
   github_client_secret: System.get_env("GITHUB_CLIENT_SECRET"),
   local_server: System.get_env("LOCAL_SERVER"),

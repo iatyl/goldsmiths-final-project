@@ -146,7 +146,16 @@ defmodule IrchubWeb.UserAuth do
   def on_mount(:mount_current_user, _params, session, socket) do
     {:cont, mount_current_user(socket, session)}
   end
-
+  def on_mount(:ensure_cookie_consent_status, _params, session, socket) do
+    socket = Phoenix.Component.assign(
+      socket,
+      :cookie_consent_status,
+      Map.get(
+        session,
+        IrchubWeb.CookieConsentController.cookie_consent_key_str(),
+        false))
+    {:cont, socket}
+  end
   def on_mount(:ensure_authenticated, _params, session, socket) do
     socket = mount_current_user(socket, session)
 
