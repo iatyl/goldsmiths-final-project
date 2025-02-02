@@ -1,0 +1,30 @@
+<.header>
+  <%= Irchub.Util.pval(@client_state, :nick) %> : <%= @channel %> @ <%= Irchub.Util.pval(@client_state, :server) %>
+</.header>
+  <div class="messages grid grid-flow-col gap-2" style="border: 1px solid #eee; height: 400px; overflow: scroll; margin-bottom: 8px;">
+    <!-- messages go here -->
+    <div class="col-span-3">
+    Messages
+    <%= for m <- @messages do %>
+      <p style="margin: 2px;"><b><%= raw Irchub.Util.fmt(m.name) %></b>: <%= raw Irchub.Util.fmt(m.message, @userlist) %></p>
+    <% end %>
+    </div>
+    <div class="col-span-1">
+    Users:
+    <%= for nick <- @userlist do %>
+    <.link href={~p"/clients/#{@client_id}/nicks/#{nick}/"}>
+      <p style="margin: 2px;"><b><%= nick %></b></p>
+    </.link>
+    <% end %>
+
+    </div>
+  </div>
+
+
+  <form phx-submit="send">
+    <!-- Enter is not submit! -->
+    <!-- https://stackoverflow.com/a/51507806 -->
+    <button type="submit" disabled style="display: none" aria-hidden="true"></button>
+    <input type="text" name="message" required="required" placeholder="Hello world...">
+    <button type="submit">Send</button>
+  </form>

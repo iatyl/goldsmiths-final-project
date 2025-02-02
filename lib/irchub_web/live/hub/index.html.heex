@@ -1,0 +1,19 @@
+<.header>
+  Chat 
+</.header>
+<.table
+  id="clients"
+  rows={@streams.clients}
+>
+  <:col :let={{_id, client}} label="Network"><%= Irchub.Chat.ClientUtil.network(client) %></:col>
+  <:col :let={{_id, client}} label="Server"><%= Enum.at(Tuple.to_list(List.keyfind(Irchub.Chat.ClientUtil.current_state(client), :server, 0)), 1) %></:col>
+  <:col :let={{_id, client}} label="Nick"><%= Enum.at(Tuple.to_list(List.keyfind(Irchub.Chat.ClientUtil.current_state(client), :nick, 0)), 1) %></:col>
+  <:col :let={{_id, client}} label="Channels">
+  <%= for channel <- Irchub.Chat.ClientUtil.list_channels(client) do %>
+        <.link href={~p"/clients/#{client.id}/channels/#{channel}/"}><%= channel %></.link><br>
+  <% end %> 
+  </:col>
+</.table>
+<br>
+<hr>
+<br><.link class="underline" href={~p"/clients/"}>Configure Clients</.link>

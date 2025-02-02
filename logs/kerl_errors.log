@@ -1,0 +1,232 @@
+make[4]: Entering directory '/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src'
+ CC	../priv/obj/x86_64-pc-linux-gnu/odbcserver.o
+ CC	../priv/bin/x86_64-pc-linux-gnu/odbcserver
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `encode_column_dyn':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1511:(.text+0x787): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1512:(.text+0x794): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1513:(.text+0x7a1): undefined reference to `ei_x_encode_ulong'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1514:(.text+0x7ad): undefined reference to `ei_x_encode_ulong'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1515:(.text+0x7b9): undefined reference to `ei_x_encode_ulong'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1516:(.text+0x7c6): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1517:(.text+0x7d2): undefined reference to `ei_x_encode_ulong'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1518:(.text+0x7de): undefined reference to `ei_x_encode_ulong'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `encode_atom_message':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1078:(.text+0xb45): undefined reference to `ei_encode_version'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1079:(.text+0xb52): undefined reference to `ei_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1086:(.text+0xb7a): undefined reference to `ei_encode_version'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1087:(.text+0xb88): undefined reference to `ei_encode_atom'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `encode_error_message':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1041:(.text+0xd97): undefined reference to `ei_encode_version'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1042:(.text+0xda6): undefined reference to `ei_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1043:(.text+0xdb3): undefined reference to `ei_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1046:(.text+0xdcb): undefined reference to `ei_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1047:(.text+0xdd8): undefined reference to `ei_encode_string'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1048:(.text+0xded): undefined reference to `ei_encode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1050:(.text+0xdfa): undefined reference to `ei_encode_string'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1057:(.text+0xe26): undefined reference to `ei_encode_version'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1058:(.text+0xe36): undefined reference to `ei_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1059:(.text+0xe44): undefined reference to `ei_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1062:(.text+0xe54): undefined reference to `ei_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1063:(.text+0xe62): undefined reference to `ei_encode_string'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1064:(.text+0xe72): undefined reference to `ei_encode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1066:(.text+0xe81): undefined reference to `ei_encode_string'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1050:(.text+0xeca): undefined reference to `ei_encode_string'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1057:(.text+0xef2): undefined reference to `ei_encode_version'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1058:(.text+0xf02): undefined reference to `ei_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1059:(.text+0xf10): undefined reference to `ei_encode_atom'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `encode_column_name_list':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1320:(.text+0xf6f): undefined reference to `ei_x_encode_list_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1359:(.text+0x119b): undefined reference to `ei_x_encode_string_len'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1368:(.text+0x11b2): undefined reference to `ei_x_encode_empty_list'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `retrive_scrollable_cursor_support_info':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:2664:(.text+0x1638): undefined reference to `ei_x_new_with_version'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:2665:(.text+0x1645): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:2666:(.text+0x1654): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:2679:(.text+0x16a4): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:2686:(.text+0x16c1): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:2692:(.text+0x174e): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:2693:(.text+0x1759): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o:/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:2682: more undefined references to `ei_x_encode_atom' follow
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `db_describe_table':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:991:(.text+0x1ab9): undefined reference to `ei_x_new_with_version'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:992:(.text+0x1ac6): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:993:(.text+0x1ad5): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:994:(.text+0x1ae6): undefined reference to `ei_x_encode_list_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1005:(.text+0x1b95): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1006:(.text+0x1ba8): undefined reference to `ei_x_encode_string_len'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `encode_data_type':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1673:(.text+0x1cab): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `db_describe_table':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1011:(.text+0x1cc9): undefined reference to `ei_x_encode_empty_list'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `encode_data_type':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1666:(.text+0x1d07): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1662:(.text+0x1d18): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1659:(.text+0x1d29): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1656:(.text+0x1d3a): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1650:(.text+0x1d4e): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o:/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1653: more undefined references to `ei_x_encode_atom' follow
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `encode_data_type':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1571:(.text+0x1db5): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1572:(.text+0x1dc4): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1573:(.text+0x1dd4): undefined reference to `ei_x_encode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1615:(.text+0x1de8): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1607:(.text+0x1dfc): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1610:(.text+0x1e13): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1604:(.text+0x1e2b): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1598:(.text+0x1e3f): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1592:(.text+0x1e5a): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1593:(.text+0x1e69): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1594:(.text+0x1e79): undefined reference to `ei_x_encode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1595:(.text+0x1e89): undefined reference to `ei_x_encode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1586:(.text+0x1ea4): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1566:(.text+0x1ebf): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1670:(.text+0x1eda): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1636:(.text+0x1eee): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1633:(.text+0x1f02): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1644:(.text+0x1f16): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1647:(.text+0x1f2a): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o:/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1630: more undefined references to `ei_x_encode_atom' follow
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `encode_data_type':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1576:(.text+0x1f7d): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1581:(.text+0x1f9b): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1639:(.text+0x1fb9): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `encode_result':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1169:(.text+0x20a1): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1170:(.text+0x20ac): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1169:(.text+0x2270): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1170:(.text+0x227e): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1175:(.text+0x2297): undefined reference to `ei_x_encode_long'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `encode_value_list':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1393:(.text+0x239c): undefined reference to `ei_x_encode_list_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1396:(.text+0x23af): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1407:(.text+0x2413): undefined reference to `ei_x_encode_empty_list'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1399:(.text+0x2421): undefined reference to `ei_x_encode_list_header'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `encode_result':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1173:(.text+0x243b): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `encode_value_list':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1410:(.text+0x244e): undefined reference to `ei_x_encode_empty_list'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `encode_result':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1169:(.text+0x24b1): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1170:(.text+0x24c0): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `db_param_query':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:855:(.text+0x25c2): undefined reference to `ei_decode_version'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:857:(.text+0x25d0): undefined reference to `ei_decode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:859:(.text+0x25e6): undefined reference to `ei_get_type'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:862:(.text+0x2616): undefined reference to `ei_decode_string'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:864:(.text+0x2629): undefined reference to `ei_decode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:867:(.text+0x2649): undefined reference to `ei_decode_list_header'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `bind_parameter_arrays':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:2548:(.text+0x27b5): undefined reference to `ei_get_type'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:2555:(.text+0x27d3): undefined reference to `ei_decode_tuple_header'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `init_param_column':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:2229:(.text+0x27e3): undefined reference to `ei_decode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:2369:(.text+0x286f): undefined reference to `ei_decode_long'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `bind_parameter_arrays':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:2559:(.text+0x28ae): undefined reference to `ei_decode_list_header'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `decode_params':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1688:(.text+0x2910): undefined reference to `ei_get_type'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1719:(.text+0x2b77): undefined reference to `ei_decode_binary'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1747:(.text+0x2c37): undefined reference to `ei_decode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1714:(.text+0x2c9d): undefined reference to `ei_decode_string'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1765:(.text+0x2d0f): undefined reference to `ei_decode_double'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1692:(.text+0x2d2f): undefined reference to `ei_decode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1724:(.text+0x2d89): undefined reference to `ei_decode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1725:(.text+0x2d99): undefined reference to `ei_decode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1727:(.text+0x2dc0): undefined reference to `ei_decode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1729:(.text+0x2dde): undefined reference to `ei_decode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1731:(.text+0x2dfc): undefined reference to `ei_decode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1733:(.text+0x2e1a): undefined reference to `ei_decode_long'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o:/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1735: more undefined references to `ei_decode_long' follow
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `bind_parameter_arrays':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:2552:(.text+0x2f2c): undefined reference to `ei_decode_list_header'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `init_param_column':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:2314:(.text+0x3022): undefined reference to `ei_decode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:2267:(.text+0x30ef): undefined reference to `ei_decode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:2268:(.text+0x3102): undefined reference to `ei_decode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:2291:(.text+0x31cc): undefined reference to `ei_decode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:2337:(.text+0x3336): undefined reference to `ei_decode_long'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `db_param_query':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:910:(.text+0x33ac): undefined reference to `ei_x_new_with_version'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `encode_out_params':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1196:(.text+0x33d6): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1197:(.text+0x33e5): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1200:(.text+0x343f): undefined reference to `ei_x_encode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1202:(.text+0x344f): undefined reference to `ei_x_encode_list_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1206:(.text+0x34ab): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1263:(.text+0x3583): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1272:(.text+0x35c5): undefined reference to `ei_x_encode_empty_list'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1255:(.text+0x35e6): undefined reference to `ei_x_encode_double'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1242:(.text+0x3607): undefined reference to `ei_x_encode_string'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1259:(.text+0x3628): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1247:(.text+0x364c): undefined reference to `ei_x_encode_binary'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1252:(.text+0x365d): undefined reference to `ei_x_encode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1219:(.text+0x367b): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1209:(.text+0x3689): undefined reference to `ei_x_encode_list_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1225:(.text+0x36ab): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1226:(.text+0x36b8): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1227:(.text+0x36c4): undefined reference to `ei_x_encode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1228:(.text+0x36d1): undefined reference to `ei_x_encode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1229:(.text+0x36de): undefined reference to `ei_x_encode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1230:(.text+0x36eb): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1231:(.text+0x36f8): undefined reference to `ei_x_encode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1232:(.text+0x3705): undefined reference to `ei_x_encode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1233:(.text+0x3712): undefined reference to `ei_x_encode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1269:(.text+0x371f): undefined reference to `ei_x_encode_empty_list'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `db_param_query':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:921:(.text+0x378b): undefined reference to `ei_x_free'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `database_handler':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:378:(.text+0x3958): undefined reference to `ei_x_free'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `encode_row_count':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1471:(.text+0x3d4a): undefined reference to `ei_encode_version'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1472:(.text+0x3d59): undefined reference to `ei_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1473:(.text+0x3d66): undefined reference to `ei_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1478:(.text+0x3d80): undefined reference to `ei_encode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1485:(.text+0x3dbb): undefined reference to `ei_encode_version'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1486:(.text+0x3dcb): undefined reference to `ei_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1487:(.text+0x3dd9): undefined reference to `ei_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1493:(.text+0x3de7): undefined reference to `ei_encode_long'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `db_query':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:667:(.text+0x3ec4): undefined reference to `ei_x_new_with_version'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:675:(.text+0x3f29): undefined reference to `ei_x_encode_list_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:688:(.text+0x3f62): undefined reference to `ei_x_encode_empty_list'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:667:(.text+0x4035): undefined reference to `ei_x_new_with_version'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:694:(.text+0x4047): undefined reference to `ei_x_free'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `encode_row_count':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1476:(.text+0x4069): undefined reference to `ei_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1485:(.text+0x40a4): undefined reference to `ei_encode_version'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1486:(.text+0x40b4): undefined reference to `ei_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1487:(.text+0x40c2): undefined reference to `ei_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1491:(.text+0x40d0): undefined reference to `ei_encode_atom'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `db_select':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:805:(.text+0x42ac): undefined reference to `ei_x_new'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:806:(.text+0x42b4): undefined reference to `ei_x_new_with_version'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:807:(.text+0x42c1): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:808:(.text+0x42d0): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:820:(.text+0x431a): undefined reference to `ei_x_free'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `encode_value_list_scroll':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1444:(.text+0x451e): undefined reference to `ei_x_encode_list_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1447:(.text+0x453b): undefined reference to `ei_x_encode_tuple_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1459:(.text+0x45bd): undefined reference to `ei_x_encode_empty_list'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1450:(.text+0x4601): undefined reference to `ei_x_encode_list_header'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1456:(.text+0x4614): undefined reference to `ei_x_encode_empty_list'
+/usr/bin/ld: ../priv/obj/x86_64-pc-linux-gnu/odbcserver.o: in function `encode_column_dyn':
+/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1506:(.text+0x5ee): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1555:(.text+0x61e): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1530:(.text+0x655): undefined reference to `ei_x_encode_binary'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1534:(.text+0x683): undefined reference to `ei_x_encode_long'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1548:(.text+0x701): undefined reference to `ei_x_encode_binary'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1542:(.text+0x73d): undefined reference to `ei_x_encode_atom'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1538:(.text+0x76c): undefined reference to `ei_x_encode_double'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1519:(.text+0x800): undefined reference to `ei_x_encode_ulong'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1526:(.text+0x826): undefined reference to `ei_x_encode_string'
+/usr/bin/ld: /home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src/odbcserver.c:1551:(.text+0x84b): undefined reference to `ei_x_encode_string'
+collect2: error: ld returned 1 exit status
+make[4]: *** [x86_64-pc-linux-gnu/Makefile:112: ../priv/bin/x86_64-pc-linux-gnu/odbcserver] Error 1
+make[4]: Leaving directory '/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src'
+make[3]: *** [/home/builder/.kerl/builds/25.3/otp_src_25.3/make/run_make.mk:35: opt] Error 2
+make[3]: Leaving directory '/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc/c_src'
+make[2]: *** [/home/builder/.kerl/builds/25.3/otp_src_25.3/make/otp_subdir.mk:29: opt] Error 2
+make[2]: Leaving directory '/home/builder/.kerl/builds/25.3/otp_src_25.3/lib/odbc'
+make[1]: *** [/home/builder/.kerl/builds/25.3/otp_src_25.3/make/otp_subdir.mk:29: opt] Error 2
+make[1]: Leaving directory '/home/builder/.kerl/builds/25.3/otp_src_25.3/lib'
+make: *** [Makefile:518: libs] Error 2
