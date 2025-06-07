@@ -1,0 +1,19 @@
+<.header>
+  Chatting with <span class="border-4 border-indigo-500"><%= @nick %></span> @ <%= Irchub.Util.pval(@client_state, :server) %>
+</.header>
+  <div class="messages gap-2" style="border: 1px solid #eee; height: 400px; overflow: scroll; margin-bottom: 8px;">
+    <!-- messages go here -->
+    <%= for m <- @messages do %>
+      <p style="margin: 2px;"><b><%= raw Irchub.Util.fmt(m.name) %></b>: <%= raw Irchub.Util.fmt(m.message, [m.name, @nick]) %></p>
+    <% end %>
+  </div>
+  <div>
+
+  <form phx-submit="send">
+    <!-- Enter is not submit! -->
+    <!-- https://stackoverflow.com/a/51507806 -->
+    <button type="submit" disabled style="display: none" aria-hidden="true"></button>
+    <input type="text" name="message" required="required" placeholder="Hello world...">
+    <button type="submit">Send</button>
+  </form>
+  </div>

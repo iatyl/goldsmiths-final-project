@@ -1,0 +1,375 @@
+  $ mix test > /tmp/test_output.txt; cat /tmp/test_output.txt
+......
+
+  1) test POST /users/log_in logs the user in (IrchubWeb.UserSessionControllerTest)
+     test/irchub_web/controllers/user_session_controller_test.exs:11
+     ** (RuntimeError) expected response with status 200, got: 302, with body:
+     "<html><body>You are being <a href=\"/hub/\">redirected</a>.</body></html>"
+     code: response = html_response(conn, 200)
+     stacktrace:
+       (phoenix 1.7.10) lib/phoenix/test/conn_test.ex:373: Phoenix.ConnTest.response/2
+       (phoenix 1.7.10) lib/phoenix/test/conn_test.ex:387: Phoenix.ConnTest.html_response/2
+       test/irchub_web/controllers/user_session_controller_test.exs:22: (test)
+
+.............................................................................................
+
+  2) test Show displays client (IrchubWeb.ClientLiveTest)
+     test/irchub_web/live/client_live_test.exs:95
+     ** (MatchError) no match of right hand side value: {:error, {:redirect, %{flash: %{"error" => "You must log in to access this page."}, to: "/users/log_in"}}}
+     code: {:ok, _show_live, html} = live(conn, ~p"/clients/#{client}")
+     stacktrace:
+       test/irchub_web/live/client_live_test.exs:96: (test)
+
+
+
+  3) test Index lists all clients (IrchubWeb.ClientLiveTest)
+     test/irchub_web/live/client_live_test.exs:20
+     ** (MatchError) no match of right hand side value: {:error, {:redirect, %{flash: %{"error" => "You must log in to access this page."}, to: "/users/log_in"}}}
+     code: {:ok, _index_live, html} = live(conn, ~p"/clients")
+     stacktrace:
+       test/irchub_web/live/client_live_test.exs:21: (test)
+
+
+
+  4) test Index deletes client in listing (IrchubWeb.ClientLiveTest)
+     test/irchub_web/live/client_live_test.exs:84
+     ** (MatchError) no match of right hand side value: {:error, {:redirect, %{flash: %{"error" => "You must log in to access this page."}, to: "/users/log_in"}}}
+     code: {:ok, index_live, _html} = live(conn, ~p"/clients")
+     stacktrace:
+       test/irchub_web/live/client_live_test.exs:85: (test)
+
+
+
+  5) test Show updates client within modal (IrchubWeb.ClientLiveTest)
+     test/irchub_web/live/client_live_test.exs:102
+     ** (MatchError) no match of right hand side value: {:error, {:redirect, %{flash: %{"error" => "You must log in to access this page."}, to: "/users/log_in"}}}
+     code: {:ok, show_live, _html} = live(conn, ~p"/clients/#{client}")
+     stacktrace:
+       test/irchub_web/live/client_live_test.exs:103: (test)
+
+
+
+  6) test Index saves new client (IrchubWeb.ClientLiveTest)
+     test/irchub_web/live/client_live_test.exs:27
+     ** (ArgumentError) value for hidden "client[irchub_user_id]" must be one of ["296"], got: ""
+     code: |> render_change() =~ "can&#39;t be blank"
+     stacktrace:
+       (phoenix_live_view 0.20.3) lib/phoenix_live_view/test/live_view_test.ex:1099: Phoenix.LiveViewTest.call/2
+       test/irchub_web/live/client_live_test.exs:48: (test)
+
+
+
+  7) test Index updates client in listing (IrchubWeb.ClientLiveTest)
+     test/irchub_web/live/client_live_test.exs:61
+     ** (MatchError) no match of right hand side value: {:error, {:redirect, %{flash: %{"error" => "You must log in to access this page."}, to: "/users/log_in"}}}
+     code: {:ok, index_live, _html} = live(conn, ~p"/clients")
+     stacktrace:
+       test/irchub_web/live/client_live_test.exs:62: (test)
+
+
+
+  8) test Reset Password does not reset password on invalid data (IrchubWeb.UserResetPasswordLiveTest)
+     test/irchub_web/live/user_reset_password_live_test.exs:71
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/2
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/2:
+
+         # 1
+	 (Error message reducted)
+         # 2
+         "/users/reset_password/_h9uovGx7tM2FGmWJeHVai8ahS0axoLywSsU-UoVCWU"
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path) when -redir === 301- or -redir === 302-
+
+     code: {:ok, lv, _html} = live(conn, ~p"/users/reset_password/#{token}")
+     stacktrace:
+       (phoenix_live_view 0.20.3) lib/phoenix_live_view/test/live_view_test.ex:323: Phoenix.LiveViewTest.connect_from_static_token/2
+       test/irchub_web/live/user_reset_password_live_test.exs:72: (test)
+
+
+
+  9) test Reset password page renders reset password with valid token (IrchubWeb.UserResetPasswordLiveTest)
+     test/irchub_web/live/user_reset_password_live_test.exs:21
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/2
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/2:
+
+         # 1
+	 (Error message reducted)
+         # 2
+         "/users/reset_password/wyAq-LpK58ag84T1jODLSor5T7zyLBXKw1a3LAsQMyA"
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path) when -redir === 301- or -redir === 302-
+
+     code: {:ok, _lv, html} = live(conn, ~p"/users/reset_password/#{token}")
+     stacktrace:
+       (phoenix_live_view 0.20.3) lib/phoenix_live_view/test/live_view_test.ex:323: Phoenix.LiveViewTest.connect_from_static_token/2
+       test/irchub_web/live/user_reset_password_live_test.exs:22: (test)
+
+
+
+ 10) test Reset Password resets password once (IrchubWeb.UserResetPasswordLiveTest)
+     test/irchub_web/live/user_reset_password_live_test.exs:52
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/2
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/2:
+
+         # 1
+	 (Error message reducted)
+         # 2
+         "/users/reset_password/rVBnB6rOZDjO78S_psbSE1GmibpHZg_Khvhpc3ITmC0"
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path) when -redir === 301- or -redir === 302-
+
+     code: {:ok, lv, _html} = live(conn, ~p"/users/reset_password/#{token}")
+     stacktrace:
+       (phoenix_live_view 0.20.3) lib/phoenix_live_view/test/live_view_test.ex:323: Phoenix.LiveViewTest.connect_from_static_token/2
+       test/irchub_web/live/user_reset_password_live_test.exs:53: (test)
+
+
+
+ 11) test Reset password navigation redirects to login page when the Log in button is clicked (IrchubWeb.UserResetPasswordLiveTest)
+     test/irchub_web/live/user_reset_password_live_test.exs:91
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/2
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/2:
+
+         # 1
+	 (Error message reducted)
+
+         # 2
+         "/users/reset_password/8Zt5apEvnam1ZkOu3BzR-wwbzLrH_LwNIWliFGajNqQ"
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path) when -redir === 301- or -redir === 302-
+
+     code: {:ok, lv, _html} = live(conn, ~p"/users/reset_password/#{token}")
+     stacktrace:
+       (phoenix_live_view 0.20.3) lib/phoenix_live_view/test/live_view_test.ex:323: Phoenix.LiveViewTest.connect_from_static_token/2
+       test/irchub_web/live/user_reset_password_live_test.exs:92: (test)
+
+
+
+ 12) test Reset password page does not render reset password with invalid token (IrchubWeb.UserResetPasswordLiveTest)
+     test/irchub_web/live/user_reset_password_live_test.exs:27
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/2
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/2:
+
+         # 1
+	 (Error message reducted)
+         # 2
+         "/users/reset_password/invalid"
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path) when -redir === 301- or -redir === 302-
+
+     code: {:error, {:redirect, to}} = live(conn, ~p"/users/reset_password/invalid")
+     stacktrace:
+       (phoenix_live_view 0.20.3) lib/phoenix_live_view/test/live_view_test.ex:323: Phoenix.LiveViewTest.connect_from_static_token/2
+       test/irchub_web/live/user_reset_password_live_test.exs:28: (test)
+
+
+
+ 13) test Reset password navigation redirects to password reset page when the Register button is clicked (IrchubWeb.UserResetPasswordLiveTest)
+     test/irchub_web/live/user_reset_password_live_test.exs:103
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/2
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/2:
+
+         # 1
+	 (Error message reducted)
+
+         # 2
+         "/users/reset_password/OhZLH2jEg1hPV2aXqsUfUzlgJYVb78kjaujqGxBnPeQ"
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path) when -redir === 301- or -redir === 302-
+
+     code: {:ok, lv, _html} = live(conn, ~p"/users/reset_password/#{token}")
+     stacktrace:
+       (phoenix_live_view 0.20.3) lib/phoenix_live_view/test/live_view_test.ex:323: Phoenix.LiveViewTest.connect_from_static_token/2
+       test/irchub_web/live/user_reset_password_live_test.exs:107: (test)
+
+
+
+ 14) test Reset password page renders errors for invalid data (IrchubWeb.UserResetPasswordLiveTest)
+     test/irchub_web/live/user_reset_password_live_test.exs:36
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/2
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/2:
+
+         # 1
+	 (Error message reducted)
+
+         # 2
+         "/users/reset_password/X5XKcFCwqUrMc1YT2KVfz-7NXn-nwI5xQEDpRfN4YDo"
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path) when -redir === 301- or -redir === 302-
+
+     code: {:ok, lv, _html} = live(conn, ~p"/users/reset_password/#{token}")
+     stacktrace:
+       (phoenix_live_view 0.20.3) lib/phoenix_live_view/test/live_view_test.ex:323: Phoenix.LiveViewTest.connect_from_static_token/2
+       test/irchub_web/live/user_reset_password_live_test.exs:37: (test)
+
+.....
+
+ 15) test Log in page renders log in page (IrchubWeb.UserLoginLiveTest)
+     test/irchub_web/live/user_login_live_test.exs:8
+     Assertion with =~ failed
+     code:  assert html =~ "Forgot your password?"
+     right: "Forgot your password?"
+     (Error message Reducted)
+     stacktrace:
+       test/irchub_web/live/user_login_live_test.exs:13: (test)
+
+.
+
+ 16) test login navigation redirects to forgot password page when the Forgot Password button is clicked (IrchubWeb.UserLoginLiveTest)
+     test/irchub_web/live/user_login_live_test.exs:73
+     ** (ArgumentError) expected selector "main a:fl-contains(\"Forgot your password?\")" to return a single element, but got none within:
+     (Error message reducted)
+
+     code: |> render_click()
+     stacktrace:
+       (phoenix_live_view 0.20.3) lib/phoenix_live_view/test/live_view_test.ex:1099: Phoenix.LiveViewTest.call/2
+       test/irchub_web/live/user_login_live_test.exs:81: (test)
+
+..........
+
+ 17) test Forgot password page renders email page (IrchubWeb.UserForgotPasswordLiveTest)
+     test/irchub_web/live/user_forgot_password_live_test.exs:11
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/2
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/2:
+
+         # 1
+	 (Error message reducted)
+         # 2
+         "/users/reset_password"
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path) when -redir === 301- or -redir === 302-
+
+     code: {:ok, lv, html} = live(conn, ~p"/users/reset_password")
+     stacktrace:
+       (phoenix_live_view 0.20.3) lib/phoenix_live_view/test/live_view_test.ex:323: Phoenix.LiveViewTest.connect_from_static_token/2
+       test/irchub_web/live/user_forgot_password_live_test.exs:12: (test)
+
+
+
+ 18) test Reset link does not send reset password token if email is invalid (IrchubWeb.UserForgotPasswordLiveTest)
+     test/irchub_web/live/user_forgot_password_live_test.exs:50
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/2
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/2:
+
+         # 1
+	 (Error message reducted)
+         # 2
+         "/users/reset_password"
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path) when -redir === 301- or -redir === 302-
+
+     code: {:ok, lv, _html} = live(conn, ~p"/users/reset_password")
+     stacktrace:
+       (phoenix_live_view 0.20.3) lib/phoenix_live_view/test/live_view_test.ex:323: Phoenix.LiveViewTest.connect_from_static_token/2
+       test/irchub_web/live/user_forgot_password_live_test.exs:51: (test)
+
+
+
+ 19) test Forgot password page redirects if already logged in (IrchubWeb.UserForgotPasswordLiveTest)
+     test/irchub_web/live/user_forgot_password_live_test.exs:19
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/2
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/2:
+
+         # 1
+	 (Error message reducted)
+
+         # 2
+         "/users/reset_password"
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path) when -redir === 301- or -redir === 302-
+
+     code: |> live(~p"/users/reset_password")
+     stacktrace:
+       (phoenix_live_view 0.20.3) lib/phoenix_live_view/test/live_view_test.ex:323: Phoenix.LiveViewTest.connect_from_static_token/2
+       test/irchub_web/live/user_forgot_password_live_test.exs:23: (test)
+
+
+
+ 20) test Reset link sends a new reset password token (IrchubWeb.UserForgotPasswordLiveTest)
+     test/irchub_web/live/user_forgot_password_live_test.exs:35
+     ** (FunctionClauseError) no function clause matching in Phoenix.LiveViewTest.connect_from_static_token/2
+
+     The following arguments were given to Phoenix.LiveViewTest.connect_from_static_token/2:
+
+         # 1
+	 (Error message reducted)
+         # 2
+         "/users/reset_password"
+
+     Attempted function clauses (showing 3 out of 3):
+
+         defp connect_from_static_token(-%Plug.Conn{status: 200, assigns: %{live_module: live_module}} = conn-, path)
+         defp connect_from_static_token(-%Plug.Conn{status: 200}-, _path)
+         defp connect_from_static_token(%Plug.Conn{status: redir} = conn, _path) when -redir === 301- or -redir === 302-
+
+     code: {:ok, lv, _html} = live(conn, ~p"/users/reset_password")
+     stacktrace:
+       (phoenix_live_view 0.20.3) lib/phoenix_live_view/test/live_view_test.ex:323: Phoenix.LiveViewTest.connect_from_static_token/2
+       test/irchub_web/live/user_forgot_password_live_test.exs:36: (test)
+
+..
+
+ 21) test register user creates account and logs the user in (IrchubWeb.UserRegistrationLiveTest)
+     test/irchub_web/live/user_registration_live_test.exs:40
+     Assertion with =~ failed
+     code:  assert response =~ "Settings"
+     left:  "<html><body>You are being <a href=\"/hub/\">redirected</a>.</body></html>"
+     right: "Settings"
+     stacktrace:
+       test/irchub_web/live/user_registration_live_test.exs:54: (test)
+
+....
+Finished in 1.8 seconds (0.7s async, 1.0s sync)
+142 tests, 21 failures
+
+Randomized with seed 946480
